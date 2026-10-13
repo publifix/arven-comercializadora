@@ -51,15 +51,11 @@ const req = '<span class="text-error" aria-hidden="true"> *</span>';
             <p id="f-empresa-err" class="text-error mt-1.5 hidden text-sm" data-error></p>
           </div>
           <div>
-            <label for="f-puesto" class={label}>Puesto</label>
-            <input id="f-puesto" name="puesto" type="text" autocomplete="organization-title" placeholder="Ej. Compras, Seguridad e Higiene, Mantenimiento" class={input} />
-          </div>
-          <div>
             <label for="f-correo" class={label}>Correo corporativo<Fragment set:html={req} /></label>
             <input id="f-correo" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="nombre@empresa.com" class={input} aria-describedby="f-correo-err" />
             <p id="f-correo-err" class="text-error mt-1.5 hidden text-sm" data-error></p>
           </div>
-          <div class="md:col-span-2 md:max-w-[calc(50%-0.75rem)]">
+          <div>
             <label for="f-telefono" class={label}>Teléfono o WhatsApp<Fragment set:html={req} /></label>
             <input
               id="f-telefono"
@@ -76,6 +72,10 @@ const req = '<span class="text-error" aria-hidden="true"> *</span>';
             <p id="f-telefono-err" class="text-error mt-1.5 hidden text-sm" data-error></p>
           </div>
 
+          <div class="md:col-span-2">
+            <label for="f-puesto" class={label}>Puesto</label>
+            <input id="f-puesto" name="puesto" type="text" autocomplete="organization-title" placeholder="Ej. Compras, Seguridad e Higiene, Mantenimiento" class={input} />
+          </div>
           <fieldset class="md:col-span-2">
             <legend class={label}>¿Qué necesitas?</legend>
             <div class="grid grid-cols-2 gap-2 sm:grid-cols-3">
