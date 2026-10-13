@@ -5,8 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // Dominio y ruta base: por defecto la vista previa en GitHub Pages.
 // Para el dominio final: SITE_URL=https://arven.com.mx BASE_PATH=/ npm run build
-const site = process.env.SITE_URL ?? 'https://publifix.github.io';
-const base = process.env.BASE_PATH ?? '/arven-comercializadora';
+const site = process.env.SITE_URL || 'https://publifix.github.io';
+const base = process.env.BASE_PATH || '/arven-comercializadora';
 
 export default defineConfig({
   site,

@@ -19,7 +19,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # Si el proyecto tiene un build de Node (package.json con script "build"),
       # se compila y se publica dist/. Si no, se publica site/ tal cual.
@@ -34,7 +34,7 @@ jobs:
             echo "dir=site" >> "$GITHUB_OUTPUT"
           fi
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         if: steps.detect.outputs.node == 'true'
         with:
           node-version: 22

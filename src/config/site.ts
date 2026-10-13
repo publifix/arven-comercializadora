@@ -82,9 +82,9 @@ export const site = {
 
   integrations: {
     /** Formspree: https://formspree.io/f/<id>. Se define con PUBLIC_FORM_ENDPOINT. */
-    formEndpoint: import.meta.env.PUBLIC_FORM_ENDPOINT ?? '',
+    formEndpoint: import.meta.env.PUBLIC_FORM_ENDPOINT || '',
     /** Google Tag Manager desactivado por defecto. Se activa con PUBLIC_GTM_ID. */
-    gtmId: import.meta.env.PUBLIC_GTM_ID ?? '',
+    gtmId: import.meta.env.PUBLIC_GTM_ID || '',
   },
 } as const;
 
