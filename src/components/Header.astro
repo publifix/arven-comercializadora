@@ -1,0 +1,156 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import WhatsAppGlyph from './WhatsAppGlyph.astro';
+import { nav } from '../content/copy';
+import { site, telHref, whatsappHref } from '../config/site';
+
+interface Props {
+  /** En páginas internas las anclas apuntan a la portada */
+  home?: string;
+}
+const { home = '' } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const link = (hash: string) => `${home}${hash}`;
+---
+
+<div class="bg-negro text-gris-300 hidden lg:block">
+  <div class="container-x flex h-10 items-center justify-end gap-7 text-[0.8125rem]">
+    <a href={telHref} class="hover:text-blanco inline-flex items-center gap-2 transition-colors">
+      <Icon name="Phone" class="text-amarillo size-4" />
+      <span><span class="sr-only">Teléfono: </span>{site.contact.phoneDisplay}</span>
+    </a>
+    <a href={whatsappHref} class="hover:text-blanco inline-flex items-center gap-2 transition-colors" rel="noopener" target="_blank">
+      <WhatsAppGlyph class="text-amarillo size-4" />
+      <span><span class="sr-only">WhatsApp: </span>{site.contact.whatsappDisplay}</span>
+    </a>
+    <span class="inline-flex items-center gap-2">
+      <Icon name="Clock" class="text-amarillo size-4" />
+      <span>Lunes a viernes de {site.hours.weekdays} h, sábados de {site.hours.saturday} h</span>
+    </span>
+  </div>
+</div>
+
+<header class="bg-negro border-gris-700/60 sticky top-0 z-50 border-b" data-header>
+  <nav class="container-x flex h-[4.5rem] items-center justify-between gap-6" aria-label="Principal">
+    <a href={home || base} class="-m-1 shrink-0 p-1" aria-label="ARVEN Comercializadora, ir al inicio">
+      <Logo variant="negativo" height={40} class="h-10 w-auto" />
+    </a>
+
+    <ul class="hidden items-center gap-1 lg:flex">
+      {
+        nav.links.map((l) => (
+          <li>
+            <a
+              href={link(l.href)}
+              class="font-display text-blanco hover:text-amarillo relative inline-flex min-h-11 items-center px-3 text-[0.9375rem] font-semibold tracking-[0.02em] transition-colors"
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="flex items-center gap-2">
+      <a href={link('#contacto')} class="btn btn-primary hidden !min-h-11 !px-5 sm:inline-flex">{nav.cta}</a>
+      <button
+        type="button"
+        class="text-blanco hover:text-amarillo inline-flex size-12 cursor-pointer items-center justify-center lg:hidden"
+        aria-haspopup="dialog"
+        aria-controls="menu-movil"
+        aria-expanded="false"
+        data-menu-open
+      >
+        <Icon name="Menu" class="size-7" />
+        <span class="sr-only">Abrir menú</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<dialog
+  id="menu-movil"
+  class="bg-negro text-blanco m-0 h-dvh max-h-none w-full max-w-none p-0 backdrop:bg-black/60"
+  aria-label="Menú"
+  data-menu
+>
+  <div class="flex h-full flex-col">
+    <div class="container-x border-gris-700/60 flex h-[4.5rem] shrink-0 items-center justify-between border-b">
+      <Logo variant="negativo" height={40} class="h-10 w-auto" loading="lazy" />
+      <button type="button" class="hover:text-amarillo inline-flex size-12 cursor-pointer items-center justify-center" data-menu-close>
+        <Icon name="X" class="size-7" />
+        <span class="sr-only">Cerrar menú</span>
+      </button>
+    </div>
+    <nav class="flex flex-1 flex-col justify-center" aria-label="Menú móvil">
+    <ul class="container-x flex flex-col gap-1 py-8">
+      {
+        nav.links.map((l) => (
+          <li>
+            <a
+              href={link(l.href)}
+              class="font-display hover:text-amarillo border-gris-700/60 flex min-h-16 items-center justify-between border-b text-[1.75rem] font-bold uppercase"
+              data-menu-link
+            >
+              {l.label}
+              <Icon name="ArrowRight" class="text-amarillo size-6" />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    </nav>
+    <div class="container-x flex shrink-0 flex-col gap-3 pb-8">
+      <a href={link('#contacto')} class="btn btn-primary w-full" data-menu-link>{nav.cta}</a>
+      <a href={whatsappHref} class="btn btn-outline-light w-full" rel="noopener" target="_blank">
+        <WhatsAppGlyph class="size-5" />
+        WhatsApp
+      </a>
+      <a href={telHref} class="text-gris-300 hover:text-blanco mt-2 inline-flex min-h-11 items-center justify-center gap-2 text-sm">
+        <Icon name="Phone" class="text-amarillo size-4" />
+        {site.contact.phoneDisplay}
+      </a>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('[data-menu]');
+  const openBtn = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+  if (dialog && openBtn) {
+    const focusables = () =>
+      Array.from(dialog.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')).filter((el) => el.offsetParent !== null);
+
+    openBtn.addEventListener('click', () => {
+      dialog.showModal();
+      openBtn.setAttribute('aria-expanded', 'true');
+      document.documentElement.style.overflow = 'hidden';
+      focusables()[0]?.focus();
+    });
+    const close = () => dialog.close();
+    dialog.addEventListener('close', () => {
+      openBtn.setAttribute('aria-expanded', 'false');
+      document.documentElement.style.overflow = '';
+      openBtn.focus();
+    });
+    dialog.querySelector('[data-menu-close]')?.addEventListener('click', close);
+    dialog.querySelectorAll('[data-menu-link]').forEach((a) => a.addEventListener('click', close));
+    // Foco atrapado dentro del menú (Tab / Shift+Tab). Escape lo cierra el propio <dialog>.
+    dialog.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const items = focusables();
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+    // Si la ventana crece a escritorio con el menú abierto, se cierra.
+    matchMedia('(min-width: 64rem)').addEventListener('change', (m) => m.matches && dialog.open && close());
+  }
+</script>

@@ -37,11 +37,17 @@ jobs:
       - uses: actions/setup-node@v4
         if: steps.detect.outputs.node == 'true'
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Build
         if: steps.detect.outputs.node == 'true'
+        env:
+          # Variables del repositorio (Settings > Secrets and variables > Actions > Variables)
+          PUBLIC_FORM_ENDPOINT: ${{ vars.PUBLIC_FORM_ENDPOINT }}
+          PUBLIC_GTM_ID: ${{ vars.PUBLIC_GTM_ID }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          BASE_PATH: ${{ vars.BASE_PATH }}
         run: |
           npm ci
           npm run build

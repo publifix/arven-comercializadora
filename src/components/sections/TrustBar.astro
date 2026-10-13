@@ -1,0 +1,24 @@
+---
+import Icon from '../Icon.astro';
+import { trust } from '../../content/copy';
+---
+
+<section class="bg-grafito text-blanco" aria-label="ARVEN en cifras">
+  <ul class="container-x divide-gris-700 xs:grid-cols-2 xs:gap-x-8 xs:divide-y-0 grid grid-cols-1 divide-y lg:grid-cols-4 lg:gap-x-0 lg:divide-x">
+    {
+      trust.map((t) => (
+        <li
+          class="flex items-start gap-4 py-7 lg:px-8 lg:py-9 lg:first:pl-0 lg:last:pr-0"
+        >
+          <span class="icon-line text-amarillo mt-0.5 size-9 shrink-0" aria-hidden="true">
+            <Icon name={t.icon} class="size-9" />
+          </span>
+          <p class="flex flex-col gap-1">
+            <span class="font-display text-[1.625rem] leading-none font-bold whitespace-nowrap tabular-nums lg:text-[1.75rem]">{t.value}</span>
+            <span class="text-gris-300 text-sm leading-snug">{t.label}</span>
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+</section>

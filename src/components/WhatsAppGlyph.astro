@@ -1,0 +1,11 @@
+---
+import { siWhatsapp } from 'simple-icons';
+interface Props {
+  class?: string;
+}
+const { class: className = 'size-6' } = Astro.props;
+---
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class={className} aria-hidden="true" focusable="false">
+  <path d={siWhatsapp.path} />
+</svg>

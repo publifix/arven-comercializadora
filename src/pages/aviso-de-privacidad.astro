@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site, fullAddress, mailHref } from '../config/site';
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const h2 = 'font-display text-grafito mt-12 text-2xl leading-tight font-bold md:text-[1.75rem]';
+const p = 'text-gris-700 mt-4 leading-[1.7]';
+const ul = 'text-gris-700 mt-4 list-disc space-y-2 pl-6 leading-[1.7] marker:text-gris-500';
+---
+
+<BaseLayout
+  title="Aviso de privacidad | ARVEN Comercializadora"
+  description="Aviso de privacidad integral de ARVEN Comercializadora: datos que recabamos, finalidades y cómo ejercer tus derechos ARCO."
+  path="aviso-de-privacidad/"
+>
+  <Header home={base} />
+  <main id="contenido" tabindex="-1" class="outline-none">
+    <div class="bg-grafito text-blanco">
+      <div class="container-x py-14 md:py-20">
+        <h1 class="font-display text-[2.25rem] leading-[1.08] font-bold uppercase md:text-[3.5rem]">Aviso de privacidad</h1>
+        <span class="lane mt-6" aria-hidden="true"></span>
+        <p class="text-gris-300 mt-6">Última actualización: [fecha de publicación]</p>
+      </div>
+    </div>
+
+    <article class="container-x max-w-[48rem] py-14 md:py-20">
+      <div class="border-amarillo bg-amarillo-claro text-grafito border px-5 py-4 text-[0.9375rem]">
+        <strong class="font-semibold">[Borrador pendiente de validar con el área legal del cliente.]</strong> Los datos entre corchetes deben completarse antes de publicar.
+      </div>
+
+      <h2 class={h2}>Identidad y domicilio del responsable</h2>
+      <p class={p}>
+        {site.legalName} ("{site.name}"), con domicilio en {fullAddress}, C.P. {site.address.postalCode}, es responsable del tratamiento de tus datos
+        personales conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares y demás normatividad aplicable.
+      </p>
+
+      <h2 class={h2}>Datos personales que recabamos</h2>
+      <p class={p}>Para atender tu solicitud de cotización recabamos los siguientes datos, que nos proporcionas directamente a través del formulario del sitio, por teléfono, WhatsApp o correo electrónico:</p>
+      <ul class={ul}>
+        <li>Nombre completo y puesto.</li>
+        <li>Empresa en la que laboras.</li>
+        <li>Correo electrónico corporativo y teléfono o WhatsApp.</li>
+        <li>Información de tu requerimiento y archivos que decidas adjuntar (listas, requisiciones o especificaciones).</li>
+      </ul>
+      <p class={p}>No recabamos datos personales sensibles.</p>
+
+      <h2 class={h2}>Finalidades del tratamiento</h2>
+      <p class={p}>Finalidades primarias, necesarias para la relación comercial:</p>
+      <ul class={ul}>
+        <li>Atender y dar seguimiento a tus solicitudes de cotización.</li>
+        <li>Elaborar y enviar propuestas comerciales, pedidos, facturas y documentación de alta como proveedor.</li>
+        <li>Coordinar entregas, cambios y garantías.</li>
+      </ul>
+      <p class={p}>Finalidades secundarias, que no son necesarias para la relación comercial:</p>
+      <ul class={ul}>
+        <li>Enviarte información sobre productos, promociones y novedades de {site.name}.</li>
+        <li>Realizar encuestas de calidad en el servicio.</li>
+      </ul>
+      <p class={p}>
+        Si no deseas que tus datos se traten para las finalidades secundarias, puedes indicarlo en cualquier momento escribiendo a
+        <a href={mailHref} class="text-grafito font-semibold underline hover:no-underline">{site.contact.email}</a>.
+      </p>
+
+      <h2 class={h2}>Transferencias de datos</h2>
+      <p class={p}>
+        {site.name} no transfiere tus datos personales a terceros sin tu consentimiento, salvo en los casos previstos por la ley. Podemos compartirlos con
+        proveedores que nos prestan servicios (por ejemplo, paquetería o envío de formularios), quienes están obligados a tratarlos con la misma
+        confidencialidad. [Validar proveedores con el cliente.]
+      </p>
+
+      <h2 class={h2}>Derechos ARCO y revocación del consentimiento</h2>
+      <p class={p}>
+        Tienes derecho a conocer qué datos tenemos de ti (Acceso), a solicitar su corrección (Rectificación), a pedir que los eliminemos (Cancelación) y a
+        oponerte a su uso para fines específicos (Oposición), así como a revocar tu consentimiento. Para ejercerlos, envía una solicitud a
+        <a href={mailHref} class="text-grafito font-semibold underline hover:no-underline">{site.contact.email}</a> con tu nombre, un medio para
+        responderte, una identificación oficial y la descripción clara de lo que solicitas. Daremos respuesta en los plazos que establece la ley. [Validar
+        procedimiento y responsable de datos personales.]
+      </p>
+
+      <h2 class={h2}>Uso de cookies y tecnologías similares</h2>
+      <p class={p}>
+        Este sitio no utiliza cookies propias para identificarte. Si se activan herramientas de medición como Google Tag Manager o Google Analytics, estas
+        pueden usar cookies para generar estadísticas de navegación anónimas; puedes deshabilitarlas desde la configuración de tu navegador. El mapa de
+        ubicación de Google Maps solo se carga si lo solicitas.
+      </p>
+
+      <h2 class={h2}>Cambios a este aviso de privacidad</h2>
+      <p class={p}>
+        Cualquier cambio a este aviso de privacidad se publicará en esta misma página. Te recomendamos revisarla periódicamente.
+      </p>
+
+      <a href={base} class="btn btn-outline-dark mt-14">Volver al inicio</a>
+    </article>
+  </main>
+  <Footer home={base} />
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import Hero from '../components/sections/Hero.astro';
+import TrustBar from '../components/sections/TrustBar.astro';
+import Products from '../components/sections/Products.astro';
+import Solutions from '../components/sections/Solutions.astro';
+import Industries from '../components/sections/Industries.astro';
+import Why from '../components/sections/Why.astro';
+import Process from '../components/sections/Process.astro';
+import About from '../components/sections/About.astro';
+import CtaBand from '../components/sections/CtaBand.astro';
+import Contact from '../components/sections/Contact.astro';
+import Faq from '../components/sections/Faq.astro';
+import heroImg from '../assets/photos/arven-hero-1.png';
+import { responsive } from '../lib/images';
+import { buildJsonLd } from '../lib/schema';
+
+const hero = await responsive(heroImg);
+const jsonLd = buildJsonLd(Astro.site!, import.meta.env.BASE_URL);
+---
+
+<BaseLayout jsonLd={jsonLd}>
+  <link slot="head" rel="preload" as="image" type="image/avif" imagesrcset={hero.avif} imagesizes="100vw" fetchpriority="high" />
+
+  <Header />
+  <main id="contenido" tabindex="-1" class="outline-none">
+    <Hero />
+    <TrustBar />
+    <Products />
+    <Solutions />
+    <Industries />
+    <Why />
+    <Process />
+    <About />
+    <CtaBand />
+    <Contact />
+    <Faq />
+  </main>
+  <Footer />
+  <WhatsAppFloat />
+</BaseLayout>
+
+<script>
+  // Carril amarillo: se dibuja al entrar en pantalla (el CSS lo omite con prefers-reduced-motion).
+  const lanes = document.querySelectorAll<HTMLElement>('[data-lane]');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { rootMargin: '0px 0px -10% 0px' },
+    );
+    lanes.forEach((el) => io.observe(el));
+  } else {
+    lanes.forEach((el) => el.classList.add('is-in'));
+  }
+</script>

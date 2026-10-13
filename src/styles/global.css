@@ -1,0 +1,216 @@
+@import 'tailwindcss';
+
+/* Las @font-face de Saira e Inter se declaran en BaseLayout (dependen de BASE_URL). */
+/* Respaldo métrico para reducir el salto de layout mientras cargan las fuentes. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Saira Fallback';
+  src: local('Arial');
+  size-adjust: 96%;
+  ascent-override: 98%;
+  descent-override: 26%;
+  line-gap-override: 0%;
+}
+
+/* Tokens del Manual de identidad visual ARVEN v1.0 */
+@theme {
+  --color-*: initial;
+  --color-amarillo: #ffc20e;
+  --color-amarillo-hover: #e0a800;
+  --color-amarillo-claro: #fff4cc;
+  --color-grafito: #1f1f1f;
+  --color-negro: #000000;
+  --color-blanco: #ffffff;
+  --color-gris-700: #3d3d3d;
+  --color-gris-500: #6b6b6b;
+  --color-gris-300: #bdbdbd;
+  --color-gris-100: #ededeb;
+  --color-gris-50: #f7f7f5;
+  /* Colores funcionales (solo web) */
+  --color-error: #c62828;
+  --color-exito: #2e7d32;
+  --color-info: #1565c0;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-display: 'Saira', 'Saira Fallback', 'Arial', sans-serif;
+  --font-sans: 'Inter', 'Inter Fallback', 'Arial', 'Helvetica', sans-serif;
+
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --breakpoint-xs: 30rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem;
+    color-scheme: light;
+  }
+  body {
+    @apply bg-blanco text-grafito font-sans antialiased;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+  @media (min-width: 64rem) {
+    body {
+      font-size: 1.0625rem;
+    }
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--color-amarillo);
+    color: var(--color-grafito);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-amarillo);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--color-grafito);
+    border-radius: 2px;
+  }
+  a {
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
+  input,
+  textarea,
+  select {
+    caret-color: var(--color-grafito);
+    accent-color: var(--color-grafito);
+  }
+  html {
+    scrollbar-color: var(--color-gris-300) var(--color-gris-50);
+  }
+}
+
+@layer components {
+  /* Etiqueta superior: Saira SemiBold, mayúsculas, 0.08em (manual, jerarquía web) */
+  .eyebrow {
+    @apply font-display text-xs font-semibold uppercase sm:text-sm;
+    letter-spacing: 0.08em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 4px;
+    height: 1em;
+    background: var(--color-amarillo);
+  }
+  .h2 {
+    @apply font-display text-[1.75rem] leading-[1.15] font-bold tracking-[-0.01em] md:text-[2.5rem];
+  }
+  .h3 {
+    @apply font-display text-xl leading-[1.25] font-semibold md:text-2xl;
+  }
+  .lead {
+    @apply text-base leading-[1.6] md:text-lg;
+  }
+
+  /* Botones: Saira SemiBold, mayúsculas (manual) */
+  .btn {
+    @apply font-display inline-flex min-h-12 items-center justify-center gap-2 rounded-xs px-6 text-[0.9375rem] font-semibold uppercase md:text-base;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    padding-block: 0.75rem;
+    text-align: center;
+    transition:
+      background-color 180ms var(--ease-out-expo),
+      color 180ms var(--ease-out-expo),
+      border-color 180ms var(--ease-out-expo),
+      transform 180ms var(--ease-out-expo);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn-primary {
+    @apply bg-amarillo text-grafito;
+  }
+  .btn-primary:hover {
+    @apply bg-amarillo-hover;
+  }
+  .btn-outline-light {
+    @apply border-blanco text-blanco border-2 bg-transparent;
+  }
+  .btn-outline-light:hover {
+    @apply bg-blanco text-grafito;
+  }
+  .btn-outline-dark {
+    @apply border-grafito text-grafito border-2 bg-transparent;
+  }
+  .btn-outline-dark:hover {
+    @apply bg-grafito text-blanco;
+  }
+  .btn svg {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex: none;
+  }
+
+  /* Carril amarillo: firma visual (marcaje de piso de planta) */
+  .lane {
+    display: block;
+    height: 4px;
+    width: 4.5rem;
+    background: var(--color-amarillo);
+    transform-origin: left center;
+  }
+  .container-x {
+    @apply mx-auto w-full max-w-[80rem] px-4 sm:px-6 lg:px-8;
+  }
+  .section-y {
+    @apply py-16 md:py-24 lg:py-28;
+  }
+  .icon-line svg {
+    width: 100%;
+    height: 100%;
+    stroke-width: 1.75;
+  }
+}
+
+/* Revelado del carril al entrar en pantalla (solo con JS y sin reducción de movimiento). */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-lane] {
+    transform: scaleX(0);
+    transition: transform 900ms var(--ease-out-expo) 120ms;
+  }
+  .js [data-lane].is-in {
+    transform: scaleX(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

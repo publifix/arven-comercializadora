@@ -1,0 +1,44 @@
+---
+import Photo from '../Photo.astro';
+import Icon from '../Icon.astro';
+import heroImg from '../../assets/photos/arven-hero-1.png';
+import { hero } from '../../content/copy';
+---
+
+<section class="bg-negro relative isolate overflow-hidden" aria-labelledby="hero-title">
+  <Photo
+    src={heroImg}
+    alt="Trabajador con casco amarillo, lentes de seguridad y uniforme gris recorre el pasillo de una planta industrial con maquinaria CNC"
+    sizes="100vw"
+    priority
+    pictureClass="absolute inset-0 -z-20"
+    class="h-full w-full object-cover object-[72%_center] md:object-[center_center]"
+  />
+  <!-- Degradado negro desde la izquierda (y desde abajo en móvil) para garantizar legibilidad -->
+  <div
+    class="absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgb(0_0_0/0.92)_0%,rgb(0_0_0/0.78)_45%,rgb(0_0_0/0.35)_100%)] md:bg-[linear-gradient(90deg,rgb(0_0_0/0.94)_0%,rgb(0_0_0/0.86)_32%,rgb(0_0_0/0.45)_58%,rgb(0_0_0/0)_80%)]"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="container-x flex min-h-[min(40rem,calc(100svh-4.5rem))] flex-col justify-end pt-28 pb-14 md:min-h-[min(44rem,calc(100svh-8.5rem))] md:justify-center md:py-24">
+    <div class="max-w-[40rem]">
+      <p class="eyebrow text-blanco">{hero.eyebrow}</p>
+      <h1
+        id="hero-title"
+        class="font-display text-blanco mt-5 text-[2.25rem] leading-[1.08] font-bold tracking-[-0.01em] uppercase sm:text-[2.75rem] lg:text-[3.5rem] lg:leading-[1.05]"
+      >
+        {hero.title}
+      </h1>
+      <span class="lane mt-6 md:mt-7" aria-hidden="true"></span>
+      <p class="text-gris-100 mt-6 max-w-[34rem] text-base leading-[1.6] md:text-lg">{hero.subtitle}</p>
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <a href="#contacto" class="btn btn-primary">
+          {hero.primary}
+          <Icon name="ArrowRight" />
+        </a>
+        <a href="#productos" class="btn btn-outline-light">{hero.secondary}</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+---
+import Photo from '../Photo.astro';
+import Icon from '../Icon.astro';
+import WhatsAppGlyph from '../WhatsAppGlyph.astro';
+import logistica from '../../assets/photos/arven-logisica-entrega.png';
+import { ctaBand, purchaseTypes } from '../../content/copy';
+import { whatsappHref } from '../../config/site';
+
+const icons: Record<string, string> = {
+  'Compra única': 'ShoppingCart',
+  'Compra recurrente': 'Repeat',
+  'Programa de abastecimiento': 'Route',
+};
+---
+
+<section class="bg-grafito relative isolate overflow-hidden py-16 md:py-24" aria-labelledby="cta-title">
+  <Photo
+    src={logistica}
+    alt=""
+    sizes="100vw"
+    pictureClass="absolute inset-0 -z-20"
+    class="h-full w-full object-cover"
+    position="60% 50%"
+  />
+  <!-- Overlay grafito al 85 % -->
+  <div class="bg-grafito/85 absolute inset-0 -z-10" aria-hidden="true"></div>
+
+  <div class="container-x">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-16">
+      <div>
+        <h2 id="cta-title" class="h2 text-amarillo max-w-[36rem]">{ctaBand.title}</h2>
+        <p class="lead text-gris-100 mt-5 max-w-[34rem]">{ctaBand.text}</p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <a href="#contacto" class="btn btn-primary">
+            {ctaBand.primary}
+            <Icon name="ArrowRight" />
+          </a>
+          <a href={whatsappHref} class="btn btn-outline-light" rel="noopener" target="_blank">
+            <WhatsAppGlyph class="size-5" />
+            {ctaBand.secondary}
+          </a>
+        </div>
+      </div>
+
+      <ul class="grid gap-3">
+        {
+          purchaseTypes.map((type) => (
+            <li>
+              <a
+                href="#contacto"
+                data-purchase={type}
+                class="group border-gris-500 bg-negro/40 hover:border-amarillo hover:bg-negro/70 text-blanco flex min-h-16 items-center gap-4 border px-5 py-4 transition-colors duration-200"
+              >
+                <span class="icon-line text-amarillo size-7 shrink-0" aria-hidden="true">
+                  <Icon name={icons[type]} class="size-7" />
+                </span>
+                <span class="font-display flex-1 text-lg font-semibold">{type}</span>
+                <Icon name="ArrowRight" class="text-amarillo size-5 transition-transform duration-200 group-hover:translate-x-1" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

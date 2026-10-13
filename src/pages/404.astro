@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+---
+
+<BaseLayout title="Página no encontrada | ARVEN Comercializadora" description="La página que buscas no existe o cambió de dirección." noindex path="404/">
+  <Header home={base} />
+  <main id="contenido" tabindex="-1" class="bg-grafito text-blanco relative overflow-hidden outline-none">
+    <div class="container-x flex min-h-[70svh] flex-col justify-center py-20 md:py-28">
+      <p class="font-display text-amarillo text-[5rem] leading-none font-bold tabular-nums md:text-[8rem]" aria-hidden="true">404</p>
+      <h1 class="font-display mt-6 max-w-[36rem] text-[2rem] leading-[1.1] font-bold uppercase md:text-[3rem]">Esta ruta no lleva a ningún andén</h1>
+      <span class="lane mt-6" aria-hidden="true"></span>
+      <p class="text-gris-300 mt-6 max-w-[34rem] text-lg">La página que buscas no existe o cambió de dirección. Regresa al inicio o solicita tu cotización.</p>
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+        <a href={base} class="btn btn-primary">
+          <Icon name="ArrowLeft" />
+          Ir al inicio
+        </a>
+        <a href={`${base}#contacto`} class="btn btn-outline-light">Solicitar cotización</a>
+      </div>
+    </div>
+  </main>
+  <Footer home={base} />
+</BaseLayout>

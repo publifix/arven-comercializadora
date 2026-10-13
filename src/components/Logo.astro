@@ -1,0 +1,32 @@
+---
+/**
+ * Logotipo ARVEN. V05-B (negativo) para fondos negros/grafito, V05-A (positivo) para fondos claros.
+ * Altura de 40 px => ~163 px de ancho (mínimo del manual: 160 px).
+ */
+import { Image } from 'astro:assets';
+import negativo from '../assets/brand/ARVEN_V05-B_negativo_navbar@2x.png';
+import positivo from '../assets/brand/ARVEN_V05-A_positivo_navbar@2x.png';
+
+interface Props {
+  variant?: 'negativo' | 'positivo';
+  height?: number;
+  class?: string;
+  loading?: 'eager' | 'lazy';
+}
+const { variant = 'negativo', height = 40, class: className = '', loading = 'eager' } = Astro.props;
+const src = variant === 'negativo' ? negativo : positivo;
+const width = Math.round((src.width / src.height) * height);
+---
+
+<Image
+  src={src}
+  alt="ARVEN Comercializadora"
+  width={width}
+  height={height}
+  densities={[1, 2]}
+  format="webp"
+  quality={90}
+  loading={loading}
+  decoding="async"
+  class={className}
+/>

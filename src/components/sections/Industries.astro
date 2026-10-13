@@ -1,0 +1,64 @@
+---
+import type { ImageMetadata } from 'astro';
+import SectionHeader from '../SectionHeader.astro';
+import Photo from '../Photo.astro';
+import hero from '../../assets/photos/arven-hero-1.png';
+import supplys from '../../assets/photos/arven-supplys.png';
+import calzado from '../../assets/photos/arven-calzado-seguridad.png';
+import uniformes from '../../assets/photos/arven-equipo-uniformes.png';
+import logistica from '../../assets/photos/arven-logisica-entrega.png';
+import { industries } from '../../content/copy';
+
+// Fotos provisionales: el material actual no incluye fotos por sector; se usan encuadres
+// distintos de las fotografías disponibles hasta recibir las definitivas del cliente.
+const media: { src: ImageMetadata; pos: string; alt: string; wide?: boolean; zoom?: string }[] = [
+  { src: hero, pos: '18% 50%', alt: 'Nave de producción con maquinaria y señalética de seguridad', wide: true },
+  { src: hero, pos: '100% 40%', alt: 'Centro de maquinado CNC en una planta industrial', zoom: 'scale-[2.8] origin-[100%_32%]' },
+  { src: uniformes, pos: '12% 45%', alt: 'Colaboradora con uniforme industrial y casco amarillo' },
+  { src: calzado, pos: '85% 35%', alt: 'Maquinaria pesada al fondo de una planta metalmecánica' },
+  { src: logistica, pos: '62% 55%', alt: 'Montacargas cargando tarimas en el andén de un almacén' },
+  { src: supplys, pos: '8% 40%', alt: 'Cascos y chalecos de alta visibilidad en anaqueles' },
+  { src: supplys, pos: '100% 40%', alt: 'Anaqueles con lentes y calzado de seguridad listos para surtir', zoom: 'scale-[1.6] origin-[100%_30%]' },
+];
+---
+
+<section id="industrias" class="section-y bg-blanco" aria-labelledby="industrias-title">
+  <div class="container-x">
+    <SectionHeader id="industrias-title" eyebrow={industries.eyebrow} title={industries.title} intro={industries.intro} />
+
+    <ul class="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
+      {
+        industries.items.map((item, i) => {
+          const m = media[i];
+          return (
+            <li
+              class:list={[
+                'group bg-grafito relative isolate flex min-h-[17rem] flex-col justify-end overflow-hidden lg:min-h-[20rem]',
+                m.wide && 'sm:col-span-2',
+              ]}
+            >
+              <Photo
+                src={m.src}
+                alt={m.alt}
+                sizes={m.wide ? '(min-width: 64rem) 50vw, 100vw' : '(min-width: 64rem) 25vw, (min-width: 40rem) 50vw, 100vw'}
+                widths={[480, 640, 800, 1024]}
+                pictureClass="absolute inset-0 -z-20"
+                class={m.zoom ? `h-full w-full object-cover ${m.zoom}` : 'h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]'}
+                position={m.pos}
+              />
+              <div
+                class="absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgb(0_0_0/0.9)_0%,rgb(0_0_0/0.72)_42%,rgb(0_0_0/0.15)_100%)]"
+                aria-hidden="true"
+              />
+              <div class="p-6">
+                <span class="bg-amarillo block h-1 w-8 transition-[width] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-14" aria-hidden="true" />
+                <h3 class="font-display text-blanco mt-4 text-xl leading-tight font-semibold">{item.title}</h3>
+                <p class="text-gris-100 mt-2 text-[0.9375rem] leading-[1.55]">{item.text}</p>
+              </div>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>

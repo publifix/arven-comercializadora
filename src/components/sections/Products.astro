@@ -1,0 +1,56 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import Photo from '../Photo.astro';
+import Icon from '../Icon.astro';
+import supplys from '../../assets/photos/arven-supplys.png';
+import calzado from '../../assets/photos/arven-calzado-seguridad.png';
+import { products } from '../../content/copy';
+---
+
+<section id="productos" class="section-y bg-blanco" aria-labelledby="productos-title">
+  <div class="container-x">
+    <div class="grid items-end gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
+      <SectionHeader id="productos-title" eyebrow={products.eyebrow} title={products.title} intro={products.intro} />
+      <div class="relative pb-10 sm:pb-14">
+        <Photo
+          src={supplys}
+          alt="Anaqueles de almacén con cascos amarillos, chalecos de alta visibilidad, lentes y botas de seguridad"
+          sizes="(min-width: 80rem) 600px, (min-width: 64rem) 50vw, 100vw"
+          class="aspect-[16/9] w-full object-cover"
+        />
+        <Photo
+          src={calzado}
+          alt="Bota de seguridad negra con casquillo sobre piso de planta con marcaje amarillo"
+          sizes="(min-width: 64rem) 240px, 40vw"
+          widths={[320, 480, 640]}
+          pictureClass="absolute bottom-0 left-4 w-[42%] max-w-[16rem] border-4 border-blanco sm:left-6"
+          class="aspect-[4/3] w-full object-cover"
+          position="55% 70%"
+        />
+      </div>
+    </div>
+
+    <ul class="mt-14 grid gap-px bg-gris-100 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 border border-gris-100">
+      {
+        products.items.map((p) => (
+          <li class="bg-blanco flex flex-col p-6 lg:p-7">
+            <span class="icon-line text-grafito size-9" aria-hidden="true">
+              <Icon name={p.icon} class="size-9" />
+            </span>
+            <span class="bg-amarillo mt-5 block h-1 w-8" aria-hidden="true" />
+            <h3 class="font-display text-grafito mt-4 text-[1.1875rem] leading-tight font-semibold">{p.title}</h3>
+            <p class="text-gris-700 mt-2.5 text-[0.9375rem] leading-[1.6]">{p.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="bg-gris-50 mt-8 flex flex-col items-start gap-5 p-6 sm:flex-row sm:items-center sm:justify-between lg:px-8">
+      <p class="text-grafito font-medium">{products.note}</p>
+      <a href="#contacto" class="btn btn-outline-dark shrink-0">
+        {products.cta}
+        <Icon name="ArrowRight" />
+      </a>
+    </div>
+  </div>
+</section>

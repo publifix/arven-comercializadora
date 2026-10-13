@@ -1,0 +1,20 @@
+---
+interface Props {
+  id: string;
+  eyebrow: string;
+  title: string;
+  intro?: string;
+  tone?: 'light' | 'dark';
+  class?: string;
+}
+const { id, eyebrow, title, intro, tone = 'light', class: className = '' } = Astro.props;
+const dark = tone === 'dark';
+---
+
+<div class:list={['max-w-[46rem]', className]}>
+  <p class:list={['eyebrow', dark ? 'text-gris-300' : 'text-gris-700']}>{eyebrow}</p>
+  <h2 id={id} class:list={['h2 mt-4', dark ? 'text-blanco' : 'text-grafito']}>{title}</h2>
+  <span class="lane mt-5" data-lane aria-hidden="true"></span>
+  {intro && <p class:list={['lead mt-6', dark ? 'text-gris-300' : 'text-gris-700']}>{intro}</p>}
+  <slot />
+</div>

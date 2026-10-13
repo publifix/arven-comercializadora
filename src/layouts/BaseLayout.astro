@@ -1,0 +1,109 @@
+---
+import '../styles/global.css';
+import { site } from '../config/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  /** Ruta relativa a la base, p. ej. "aviso-de-privacidad/" */
+  path?: string;
+  jsonLd?: object[];
+}
+
+const { title = site.seo.title, description = site.seo.description, noindex = false, path = '', jsonLd = [] } = Astro.props;
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const asset = (p: string) => `${base}${p}`;
+const canonical = new URL(`${base}${path}`, Astro.site).href;
+const ogImage = new URL(`${base}og-image.jpg`, Astro.site).href;
+const gtmId = site.integrations.gtmId;
+
+const fontFaces = `
+@font-face{font-family:'Saira';font-style:normal;font-weight:100 900;font-display:swap;src:url('${asset('fonts/saira-latin-wght.woff2')}') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url('${asset('fonts/inter-latin-wght.woff2')}') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}`;
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="light" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="preload" href={asset('fonts/saira-latin-wght.woff2')} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={asset('fonts/inter-latin-wght.woff2')} as="font" type="font/woff2" crossorigin />
+    <style is:inline set:html={fontFaces} />
+    <slot name="head" />
+
+    <!-- Favicons y webclips -->
+    <link rel="icon" href={asset('favicon.ico')} sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href={asset('favicon-32x32.png')} />
+    <link rel="icon" type="image/png" sizes="16x16" href={asset('favicon-16x16.png')} />
+    <link rel="apple-touch-icon" sizes="180x180" href={asset('apple-touch-icon.png')} />
+    <link rel="manifest" href={asset('site.webmanifest')} />
+    <meta name="msapplication-config" content={asset('browserconfig.xml')} />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="apple-mobile-web-app-title" content="ARVEN" />
+    <meta name="application-name" content="ARVEN" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={site.locale} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="ARVEN Comercializadora: suministro industrial en Querétaro" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="ARVEN Comercializadora: suministro industrial en Querétaro" />
+
+    {jsonLd.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
+
+    <script is:inline>document.documentElement.classList.add('js');</script>
+
+    {
+      gtmId && (
+        <script is:inline define:vars={{ gtmId }}>
+          (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s);
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i;
+            f.parentNode.insertBefore(j, f);
+          })(window, document, 'script', 'dataLayer', gtmId);
+        </script>
+      )
+    }
+  </head>
+  <body>
+    {
+      gtmId && (
+        <noscript>
+          <iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager" />
+        </noscript>
+      )
+    }
+    <a
+      href="#contenido"
+      class="bg-amarillo text-grafito font-display fixed top-2 left-2 z-[100] -translate-y-24 px-4 py-3 font-semibold uppercase focus:translate-y-0"
+      >Saltar al contenido</a
+    >
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,27 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import Icon from '../Icon.astro';
+import { faq } from '../../content/copy';
+---
+
+<section id="preguntas-frecuentes" class="section-y bg-gris-50" aria-labelledby="faq-title">
+  <div class="container-x grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+    <SectionHeader id="faq-title" eyebrow={faq.eyebrow} title={faq.title} class="lg:sticky lg:top-28 lg:self-start" />
+
+    <div class="border-gris-300 border-t">
+      {
+        faq.items.map((item) => (
+          <details class="group border-gris-300 border-b" name="faq">
+            <summary class="font-display text-grafito hover:text-gris-700 flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg leading-snug font-semibold md:text-xl [&::-webkit-details-marker]:hidden">
+              <h3 class="font-[inherit] text-[length:inherit]">{item.q}</h3>
+              <span class="bg-grafito text-amarillo flex size-9 shrink-0 items-center justify-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-open:rotate-45" aria-hidden="true">
+                <Icon name="Plus" class="size-5" />
+              </span>
+            </summary>
+            <p class="text-gris-700 max-w-[62ch] pr-14 pb-6 text-base leading-[1.65]">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

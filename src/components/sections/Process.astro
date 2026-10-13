@@ -1,0 +1,59 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import Photo from '../Photo.astro';
+import Icon from '../Icon.astro';
+import logistica from '../../assets/photos/arven-logisica-entrega.png';
+import { process } from '../../content/copy';
+---
+
+<section class="section-y bg-blanco" aria-labelledby="proceso-title">
+  <div class="container-x">
+    <div class="grid items-end gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+      <SectionHeader id="proceso-title" eyebrow={process.eyebrow} title={process.title}>
+        <a href="#contacto" class="btn btn-primary mt-8 hidden lg:inline-flex">
+          {process.cta}
+          <Icon name="ArrowRight" />
+        </a>
+      </SectionHeader>
+      <Photo
+        src={logistica}
+        alt="Supervisor con chaleco de alta visibilidad revisa una tableta mientras un montacargas carga tarimas en el andén al amanecer"
+        sizes="(min-width: 80rem) 600px, (min-width: 64rem) 50vw, 100vw"
+        class="aspect-[16/9] w-full object-cover"
+      />
+    </div>
+
+    <div class="relative mt-14 lg:mt-20">
+      <!-- Carril que une los pasos -->
+      <span class="bg-gris-100 absolute top-[1.375rem] right-0 left-0 hidden h-1 lg:block" aria-hidden="true"></span>
+      <span class="lane absolute top-[1.375rem] left-0 hidden !w-full lg:block" data-lane aria-hidden="true"></span>
+      <span class="bg-amarillo absolute top-2 bottom-2 left-[1.375rem] w-1 lg:hidden" aria-hidden="true"></span>
+      <ol class="relative grid gap-0 lg:grid-cols-4 lg:gap-8">
+      {
+        process.steps.map((step, i) => (
+          <li class="relative grid grid-cols-[3rem_minmax(0,1fr)] gap-x-5 pb-10 last:pb-0 lg:block lg:pb-0">
+            <span
+              class="font-display bg-amarillo text-grafito relative z-10 flex size-12 items-center justify-center text-xl font-bold tabular-nums lg:-mt-0"
+              aria-hidden="true"
+            >
+              {i + 1}
+            </span>
+            <div class="lg:mt-7">
+              <h3 class="font-display text-grafito text-xl leading-snug font-semibold">
+                <span class="sr-only">Paso {i + 1}: </span>
+                {step.title}
+              </h3>
+              <p class="text-gris-700 mt-2 text-[0.9375rem] leading-[1.6] md:text-base">{step.text}</p>
+            </div>
+          </li>
+        ))
+      }
+      </ol>
+    </div>
+
+    <a href="#contacto" class="btn btn-primary mt-12 w-full sm:w-auto lg:hidden">
+      {process.cta}
+      <Icon name="ArrowRight" />
+    </a>
+  </div>
+</section>

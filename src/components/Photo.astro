@@ -1,0 +1,37 @@
+---
+/**
+ * Foto responsiva: <picture> con AVIF + WebP, srcset, sizes, dimensiones explícitas
+ * y carga diferida por defecto (eager + fetchpriority high solo para el hero).
+ */
+import type { ImageMetadata } from 'astro';
+import { responsive } from '../lib/images';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  sizes: string;
+  class?: string;
+  pictureClass?: string;
+  priority?: boolean;
+  widths?: number[];
+  position?: string;
+}
+const { src, alt, sizes, class: className = '', pictureClass = '', priority = false, widths, position } = Astro.props;
+const img = await responsive(src, widths);
+---
+
+<picture class={pictureClass}>
+  <source type="image/avif" srcset={img.avif} sizes={sizes} />
+  <source type="image/webp" srcset={img.webp} sizes={sizes} />
+  <img
+    src={img.fallback}
+    alt={alt}
+    width={img.width}
+    height={img.height}
+    loading={priority ? 'eager' : 'lazy'}
+    decoding={priority ? 'sync' : 'async'}
+    fetchpriority={priority ? 'high' : 'auto'}
+    class={className}
+    style={position ? `object-position:${position}` : undefined}
+  />
+</picture>

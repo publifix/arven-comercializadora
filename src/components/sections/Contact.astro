@@ -1,0 +1,374 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import Icon from '../Icon.astro';
+import WhatsAppGlyph from '../WhatsAppGlyph.astro';
+import { contact, purchaseTypes } from '../../content/copy';
+import { site, telHref, mailHref, whatsappHref } from '../../config/site';
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const endpoint = site.integrations.formEndpoint;
+const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(site.address.mapQuery)}&z=13&output=embed`;
+
+const hrefFor = (kind: string) =>
+  kind === 'tel' ? telHref : kind === 'mail' ? mailHref : kind === 'wa' ? whatsappHref : undefined;
+
+const input =
+  'border-gris-300 bg-blanco text-grafito placeholder:text-gris-500 hover:border-gris-500 focus:border-grafito block w-full rounded-xs border px-4 py-3 text-base outline-none transition-colors aria-[invalid=true]:border-error';
+const label = 'font-display text-grafito mb-2 block text-[0.9375rem] font-semibold';
+const req = '<span class="text-error" aria-hidden="true"> *</span>';
+---
+
+<section id="contacto" class="section-y bg-blanco" aria-labelledby="contacto-title">
+  <div class="container-x grid gap-14 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-16">
+    <div>
+      <SectionHeader id="contacto-title" eyebrow={contact.eyebrow} title={contact.title} intro={contact.text} />
+
+      <form
+        class="mt-10"
+        action={endpoint || undefined}
+        method="post"
+        enctype="multipart/form-data"
+        novalidate
+        data-quote-form
+        data-endpoint={endpoint}
+      >
+        <!-- Honeypot antispam (Formspree _gotcha): oculto para personas -->
+        <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+          <label for="f-website">No llenar este campo</label>
+          <input id="f-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <input type="hidden" name="_subject" value="Nueva solicitud de cotización - ARVEN" />
+
+        <div class="grid gap-x-6 gap-y-6 md:grid-cols-2">
+          <div>
+            <label for="f-nombre" class={label}>Nombre completo<Fragment set:html={req} /></label>
+            <input id="f-nombre" name="nombre" type="text" autocomplete="name" required placeholder="Ej. María López" class={input} aria-describedby="f-nombre-err" />
+            <p id="f-nombre-err" class="text-error mt-1.5 hidden text-sm" data-error></p>
+          </div>
+          <div>
+            <label for="f-empresa" class={label}>Empresa<Fragment set:html={req} /></label>
+            <input id="f-empresa" name="empresa" type="text" autocomplete="organization" required placeholder="Razón social o nombre comercial" class={input} aria-describedby="f-empresa-err" />
+            <p id="f-empresa-err" class="text-error mt-1.5 hidden text-sm" data-error></p>
+          </div>
+          <div>
+            <label for="f-puesto" class={label}>Puesto</label>
+            <input id="f-puesto" name="puesto" type="text" autocomplete="organization-title" placeholder="Ej. Compras, Seguridad e Higiene, Mantenimiento" class={input} />
+          </div>
+          <div>
+            <label for="f-correo" class={label}>Correo corporativo<Fragment set:html={req} /></label>
+            <input id="f-correo" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="nombre@empresa.com" class={input} aria-describedby="f-correo-err" />
+            <p id="f-correo-err" class="text-error mt-1.5 hidden text-sm" data-error></p>
+          </div>
+          <div class="md:col-span-2 md:max-w-[calc(50%-0.75rem)]">
+            <label for="f-telefono" class={label}>Teléfono o WhatsApp<Fragment set:html={req} /></label>
+            <input
+              id="f-telefono"
+              name="telefono"
+              type="tel"
+              autocomplete="tel-national"
+              inputmode="numeric"
+              required
+              placeholder="10 dígitos"
+              pattern="[0-9 ]{10,14}"
+              class={input}
+              aria-describedby="f-telefono-err"
+            />
+            <p id="f-telefono-err" class="text-error mt-1.5 hidden text-sm" data-error></p>
+          </div>
+
+          <fieldset class="md:col-span-2">
+            <legend class={label}>¿Qué necesitas?</legend>
+            <div class="grid grid-cols-2 gap-2 sm:grid-cols-3">
+              {
+                contact.needs.map((n) => (
+                  <label class="border-gris-300 hover:border-gris-500 has-[:checked]:border-grafito has-[:checked]:bg-amarillo-claro flex min-h-12 cursor-pointer items-center gap-3 rounded-xs border px-3.5 text-[0.9375rem] transition-colors">
+                    <input type="checkbox" name="necesidades[]" value={n} class="size-[1.125rem] shrink-0 cursor-pointer" data-need={n} />
+                    {n}
+                  </label>
+                ))
+              }
+            </div>
+          </fieldset>
+
+          <fieldset class="md:col-span-2">
+            <legend class={label}>Tipo de compra</legend>
+            <div class="grid gap-2 sm:grid-cols-3">
+              {
+                purchaseTypes.map((t) => (
+                  <label class="border-gris-300 hover:border-gris-500 has-[:checked]:border-grafito has-[:checked]:bg-amarillo-claro flex min-h-12 cursor-pointer items-center gap-3 rounded-xs border px-3.5 text-[0.9375rem] transition-colors">
+                    <input type="radio" name="tipo_compra" value={t} class="size-[1.125rem] shrink-0 cursor-pointer" />
+                    {t}
+                  </label>
+                ))
+              }
+            </div>
+          </fieldset>
+
+          <div class="md:col-span-2">
+            <label for="f-detalle" class={label}>Detalle del requerimiento</label>
+            <textarea id="f-detalle" name="detalle" rows="5" placeholder="Productos, cantidades, tallas o especificaciones" class={`${input} resize-y`}></textarea>
+          </div>
+
+          <div class="md:col-span-2">
+            <span id="f-archivo-label" class={label}>Adjuntar archivo</span>
+            <label
+              for="f-archivo"
+              class="border-gris-300 hover:border-gris-500 has-[:focus-visible]:outline-amarillo has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 flex min-h-14 cursor-pointer items-center gap-4 rounded-xs border border-dashed p-2 pr-4"
+            >
+              <input
+                id="f-archivo"
+                name="archivo"
+                type="file"
+                accept=".pdf,.xls,.xlsx,.csv,image/*,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                class="sr-only"
+                aria-labelledby="f-archivo-label"
+                aria-describedby="f-archivo-ayuda f-archivo-err"
+                data-file
+              />
+              <span class="bg-grafito text-blanco font-display inline-flex min-h-10 shrink-0 items-center gap-2 rounded-xs px-4 text-sm font-semibold uppercase" aria-hidden="true">
+                <Icon name="Paperclip" class="size-4" />
+                Seleccionar archivo
+              </span>
+              <span class="text-gris-700 min-w-0 truncate text-[0.9375rem]" data-file-name aria-hidden="true">PDF, Excel o imagen</span>
+            </label>
+            <p id="f-archivo-ayuda" class="text-gris-500 mt-1.5 text-sm">Opcional: lista o requisición</p>
+            <p id="f-archivo-err" class="text-error mt-1.5 hidden text-sm" data-error></p>
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="text-grafito flex cursor-pointer items-start gap-3 text-[0.9375rem]">
+              <input id="f-aviso" name="aviso_privacidad" type="checkbox" value="Aceptado" required class="mt-0.5 size-[1.125rem] shrink-0 cursor-pointer" aria-describedby="f-aviso-err" />
+              <span>
+                Acepto el <a href={`${base}aviso-de-privacidad/`} class="text-grafito font-semibold underline hover:no-underline">aviso de privacidad</a><Fragment set:html={req} />
+              </span>
+            </label>
+            <p id="f-aviso-err" class="text-error mt-1.5 hidden text-sm" data-error></p>
+          </div>
+        </div>
+
+        <div class="mt-8 flex flex-col gap-5">
+          <button type="submit" class="btn btn-primary w-full disabled:cursor-wait disabled:opacity-70 sm:w-auto sm:self-start" data-submit>
+            <span data-submit-label>{contact.submit}</span>
+            <svg class="hidden size-5 animate-spin" data-spinner viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.5" opacity="0.25"></circle>
+              <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+            </svg>
+          </button>
+
+          <div role="status" aria-live="polite" class="empty:hidden" data-status-ok></div>
+          <div role="alert" class="empty:hidden" data-status-err></div>
+        </div>
+
+        <template data-tpl-ok>
+          <div class="border-exito bg-[#EDF5EE] text-grafito flex items-start gap-3 border px-4 py-4">
+            <svg class="text-exito mt-0.5 size-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+            <p class="font-medium">{contact.success}</p>
+          </div>
+        </template>
+        <template data-tpl-err>
+          <div class="border-error bg-[#FBEDED] text-grafito flex items-start gap-3 border px-4 py-4">
+            <svg class="text-error mt-0.5 size-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4M12 16h.01"></path></svg>
+            <p class="font-medium">
+              {contact.error.replace(' o escríbenos por WhatsApp.', ' o ')}<a href={whatsappHref} target="_blank" rel="noopener" class="underline hover:no-underline">escríbenos por WhatsApp</a>.
+            </p>
+          </div>
+        </template>
+      </form>
+    </div>
+
+    <aside class="lg:pt-2" aria-label="Datos de contacto">
+      <div class="bg-grafito text-blanco p-6 sm:p-8">
+        <ul class="divide-gris-700 divide-y">
+          {
+            contact.details.map((d) => {
+              const href = hrefFor(d.kind);
+              return (
+                <li class="flex gap-4 py-4 first:pt-0 last:pb-0">
+                  <span class="text-amarillo mt-0.5 size-6 shrink-0" aria-hidden="true">
+                    {d.kind === 'wa' ? <WhatsAppGlyph class="size-6" /> : <Icon name={d.icon} class="size-6" />}
+                  </span>
+                  <div class="min-w-0">
+                    <p class="font-display text-gris-300 text-xs font-semibold tracking-[0.08em] uppercase">{d.label}</p>
+                    {href ? (
+                      <a
+                        href={href}
+                        class="text-blanco hover:text-amarillo mt-1 block font-medium break-words underline-offset-4 hover:underline"
+                        {...(d.kind === 'wa' ? { target: '_blank', rel: 'noopener' } : {})}
+                      >
+                        {d.value}
+                      </a>
+                    ) : (
+                      <p class="text-blanco mt-1 font-medium">{d.value}</p>
+                    )}
+                  </div>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
+
+      <!-- Mapa embebido con carga diferida: el iframe de Google Maps solo se inserta a petición -->
+      <div class="bg-gris-100 relative mt-4 aspect-[4/3] w-full overflow-hidden" data-map data-src={mapSrc}>
+        <div class="absolute inset-0 flex flex-col items-center justify-center gap-4 p-6 text-center" data-map-facade>
+          <svg class="text-gris-300 absolute inset-0 h-full w-full" aria-hidden="true">
+            <defs>
+              <pattern id="grid-map" width="32" height="32" patternUnits="userSpaceOnUse">
+                <path d="M32 0H0v32" fill="none" stroke="currentColor" stroke-width="1"></path>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid-map)"></rect>
+          </svg>
+          <span class="bg-grafito text-amarillo relative flex size-14 items-center justify-center" aria-hidden="true">
+            <Icon name="MapPin" class="size-7" />
+          </span>
+          <p class="text-grafito relative font-medium">{site.address.city}, {site.address.region}</p>
+          <button type="button" class="btn btn-outline-dark bg-blanco relative" data-map-load>Mostrar mapa</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<script>
+  // --- Formulario de cotización: validación accesible y envío por fetch ---
+  const form = document.querySelector<HTMLFormElement>('[data-quote-form]');
+  if (form) {
+    const okBox = form.querySelector<HTMLElement>('[data-status-ok]')!;
+    const errBox = form.querySelector<HTMLElement>('[data-status-err]')!;
+    const tplOk = form.querySelector<HTMLTemplateElement>('[data-tpl-ok]')!;
+    const tplErr = form.querySelector<HTMLTemplateElement>('[data-tpl-err]')!;
+    const submit = form.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const spinner = form.querySelector<SVGElement>('[data-spinner]')!;
+    const MAX_FILE = 10 * 1024 * 1024;
+
+    const messages: Record<string, (el: HTMLInputElement) => string | null> = {
+      nombre: (el) => (el.value.trim() ? null : 'Escribe tu nombre completo.'),
+      empresa: (el) => (el.value.trim() ? null : 'Escribe el nombre de tu empresa.'),
+      email: (el) =>
+        !el.value.trim()
+          ? 'Escribe tu correo corporativo.'
+          : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim())
+            ? null
+            : 'Revisa el formato del correo, por ejemplo nombre@empresa.com.',
+      telefono: (el) => {
+        const digits = el.value.replace(/\D/g, '');
+        if (!digits) return 'Escribe un teléfono o WhatsApp de contacto.';
+        return digits.length === 10 ? null : 'El teléfono debe tener 10 dígitos.';
+      },
+      archivo: (el) => {
+        const f = el.files?.[0];
+        return f && f.size > MAX_FILE ? 'El archivo supera 10 MB. Adjunta uno más ligero.' : null;
+      },
+      aviso_privacidad: (el) => (el.checked ? null : 'Debes aceptar el aviso de privacidad para enviar tu solicitud.'),
+    };
+
+    const setError = (el: HTMLInputElement, msg: string | null) => {
+      const err = document.getElementById(`${el.id}-err`);
+      el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      if (err) {
+        err.textContent = msg ?? '';
+        err.classList.toggle('hidden', !msg);
+      }
+    };
+    const validateField = (el: HTMLInputElement) => {
+      const rule = messages[el.name];
+      if (!rule) return true;
+      const msg = rule(el);
+      setError(el, msg);
+      return !msg;
+    };
+
+    // Valida al salir del campo y corrige en vivo una vez marcado como inválido.
+    Object.keys(messages).forEach((name) => {
+      const el = form.elements.namedItem(name) as HTMLInputElement | null;
+      if (!el) return;
+      el.addEventListener('blur', () => el.type !== 'checkbox' && el.value && validateField(el));
+      el.addEventListener('input', () => el.getAttribute('aria-invalid') === 'true' && validateField(el));
+      el.addEventListener('change', () => (el.type === 'checkbox' || el.type === 'file') && validateField(el));
+    });
+
+    const show = (box: HTMLElement, tpl: HTMLTemplateElement) => {
+      okBox.replaceChildren();
+      errBox.replaceChildren();
+      box.replaceChildren(tpl.content.cloneNode(true));
+    };
+    const setLoading = (on: boolean) => {
+      submit.disabled = on;
+      submit.setAttribute('aria-busy', String(on));
+      spinner.classList.toggle('hidden', !on);
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      okBox.replaceChildren();
+      errBox.replaceChildren();
+
+      const invalid = Object.keys(messages)
+        .map((name) => form.elements.namedItem(name) as HTMLInputElement | null)
+        .filter((el): el is HTMLInputElement => !!el && !validateField(el));
+      if (invalid.length) {
+        show(errBox, tplErr);
+        invalid[0].focus();
+        return;
+      }
+
+      const endpoint = form.dataset.endpoint;
+      if (!endpoint) {
+        console.warn('[ARVEN] Falta PUBLIC_FORM_ENDPOINT: el formulario no tiene destino configurado.');
+        show(errBox, tplErr);
+        return;
+      }
+
+      setLoading(true);
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        form.querySelectorAll('[aria-invalid]').forEach((el) => el.setAttribute('aria-invalid', 'false'));
+        show(okBox, tplOk);
+        (window as unknown as { dataLayer?: object[] }).dataLayer?.push({ event: 'cotizacion_enviada' });
+      } catch {
+        show(errBox, tplErr);
+      } finally {
+        setLoading(false);
+      }
+    });
+  }
+
+  // Nombre del archivo seleccionado
+  const fileInput = document.querySelector<HTMLInputElement>('[data-file]');
+  const fileName = document.querySelector<HTMLElement>('[data-file-name]');
+  if (fileInput && fileName) {
+    const initial = fileName.textContent;
+    const sync = () => (fileName.textContent = fileInput.files?.[0]?.name ?? initial);
+    fileInput.addEventListener('change', sync);
+    fileInput.form?.addEventListener('reset', () => setTimeout(sync));
+  }
+
+  // --- Accesos rápidos: preseleccionan tipo de compra / necesidad y llevan al formulario ---
+  document.addEventListener('click', (e) => {
+    const trigger = (e.target as HTMLElement).closest<HTMLElement>('[data-purchase]');
+    if (!trigger || !form) return;
+    const radio = form.querySelector<HTMLInputElement>(`input[name="tipo_compra"][value="${trigger.dataset.purchase}"]`);
+    if (radio) radio.checked = true;
+  });
+
+  // --- Mapa: carga diferida del iframe a petición del usuario ---
+  const map = document.querySelector<HTMLElement>('[data-map]');
+  map?.querySelector('[data-map-load]')?.addEventListener('click', () => {
+    const iframe = document.createElement('iframe');
+    iframe.src = map.dataset.src!;
+    iframe.title = 'Mapa de ubicación de ARVEN Comercializadora en Querétaro';
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.className = 'absolute inset-0 h-full w-full border-0';
+    map.append(iframe);
+    map.querySelector('[data-map-facade]')?.remove();
+    iframe.focus();
+  });
+</script>

@@ -1,0 +1,29 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import Icon from '../Icon.astro';
+import { why } from '../../content/copy';
+---
+
+<section class="section-y bg-grafito text-blanco" aria-labelledby="por-que-title">
+  <div class="container-x">
+    <SectionHeader id="por-que-title" eyebrow={why.eyebrow} title={why.title} tone="dark" />
+
+    <ul class="border-gris-700 mt-12 grid border-t sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
+      {
+        why.items.map((item) => (
+          <li class="border-gris-700 border-b py-8 sm:px-0 sm:odd:pr-8 sm:even:border-l sm:even:pl-8 lg:border-l-0 lg:px-8 lg:even:border-l-0 lg:[&:nth-child(3n+1)]:pl-0 lg:[&:not(:nth-child(3n+1))]:border-l">
+            <span class="icon-line text-amarillo block size-9" aria-hidden="true">
+              <Icon name={item.icon} class="size-9" />
+            </span>
+            <h3 class="font-display text-blanco mt-5 text-xl leading-snug font-semibold">{item.title}</h3>
+            <p class="text-gris-300 mt-2 text-[0.9375rem] leading-[1.6] md:text-base">{item.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="font-display text-amarillo mt-14 max-w-[52rem] text-[1.625rem] leading-[1.2] font-bold text-balance md:mt-20 md:text-[2.25rem]">
+      {why.closing}
+    </p>
+  </div>
+</section>

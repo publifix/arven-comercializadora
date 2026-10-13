@@ -1,0 +1,32 @@
+---
+/**
+ * Íconos de línea Lucide (trazo uniforme), insertados en línea y decorativos por defecto.
+ */
+import * as icons from 'lucide-static';
+
+interface Props {
+  name: string;
+  class?: string;
+  label?: string;
+}
+const { name, class: className = 'size-6', label } = Astro.props;
+const raw = (icons as Record<string, string>)[name];
+if (!raw) throw new Error(`Ícono no encontrado: ${name}`);
+const inner = raw.replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  aria-hidden={label ? undefined : 'true'}
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  focusable="false"
+  set:html={inner}
+/>

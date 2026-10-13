@@ -1,0 +1,53 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import Photo from '../Photo.astro';
+import hero from '../../assets/photos/arven-hero-1.png';
+import { about } from '../../content/copy';
+---
+
+<section id="nosotros" class="section-y bg-gris-50" aria-labelledby="nosotros-title">
+  <div class="container-x">
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
+      <div>
+        <Photo
+          src={hero}
+          alt="Colaborador con casco amarillo, lentes de seguridad y guantes recorre la planta de un cliente"
+          sizes="(min-width: 80rem) 480px, (min-width: 64rem) 40vw, 100vw"
+          class="aspect-[4/3] w-full object-cover lg:aspect-[4/5]"
+          position="74% 30%"
+        />
+      </div>
+
+      <div class="lg:pt-4">
+        <SectionHeader id="nosotros-title" eyebrow={about.eyebrow} title={about.title} />
+        <p class="lead text-gris-700 mt-6 max-w-[42rem]">{about.text}</p>
+
+        <dl class="mt-10 grid gap-8 sm:grid-cols-2">
+          <div class="border-grafito border-t-2 pt-5">
+            <dt class="font-display text-grafito text-xl font-semibold">Misión</dt>
+            <dd class="text-gris-700 mt-2 text-[0.9375rem] leading-[1.6] md:text-base">{about.mission}</dd>
+          </div>
+          <div class="border-grafito border-t-2 pt-5">
+            <dt class="font-display text-grafito text-xl font-semibold">Visión</dt>
+            <dd class="text-gris-700 mt-2 text-[0.9375rem] leading-[1.6] md:text-base">{about.vision}</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="mt-16 lg:mt-20">
+      <h3 class="font-display text-grafito text-2xl font-semibold">Valores</h3>
+      <ul class="bg-gris-100 border-gris-100 mt-6 grid gap-px border sm:grid-cols-2 lg:grid-cols-5">
+        {
+          about.values.map((v) => (
+            <li class="bg-blanco p-6">
+              <span class="bg-amarillo block h-1 w-8" aria-hidden="true" />
+              <h4 class="font-display text-grafito mt-4 text-lg font-semibold">{v.title}</h4>
+              <p class="text-gris-700 mt-1.5 text-[0.9375rem] leading-[1.55]">{v.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
