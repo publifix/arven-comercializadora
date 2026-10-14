@@ -44,7 +44,6 @@ jobs:
         if: steps.detect.outputs.node == 'true'
         env:
           # Variables del repositorio (Settings > Secrets and variables > Actions > Variables)
-          PUBLIC_FORM_ENDPOINT: ${{ vars.PUBLIC_FORM_ENDPOINT }}
           PUBLIC_GTM_ID: ${{ vars.PUBLIC_GTM_ID }}
           SITE_URL: ${{ vars.SITE_URL }}
           BASE_PATH: ${{ vars.BASE_PATH }}

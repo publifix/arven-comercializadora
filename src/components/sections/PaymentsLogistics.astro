@@ -1,0 +1,39 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import Icon from '../Icon.astro';
+import { paymentsLogistics } from '../../content/copy';
+---
+
+<section id="pagos-y-logistica" class="section-y bg-gris-50" aria-labelledby="pagos-title">
+  <div class="container-x">
+    <SectionHeader id="pagos-title" eyebrow={paymentsLogistics.eyebrow} title={paymentsLogistics.title} />
+
+    <div class="mt-12 grid gap-4 lg:mt-14 lg:grid-cols-2 lg:gap-6">
+      {
+        paymentsLogistics.columns.map((col, i) => (
+          <article
+            class:list={[
+              'flex flex-col p-7 sm:p-9 lg:p-10',
+              i === 0 ? 'bg-grafito text-blanco' : 'bg-blanco text-grafito border-gris-100 border',
+            ]}
+          >
+            <div class="flex items-center gap-4">
+              <span class="bg-amarillo text-grafito flex size-14 shrink-0 items-center justify-center" aria-hidden="true">
+                <Icon name={col.icon} class="size-7" />
+              </span>
+              <h3 class="font-display text-[1.5rem] leading-tight font-bold md:text-[1.75rem]">{col.title}</h3>
+            </div>
+            <ul class:list={['mt-8 divide-y border-t', i === 0 ? 'divide-gris-700 border-gris-700' : 'divide-gris-100 border-gris-100']}>
+              {col.bullets.map((b) => (
+                <li class="flex items-start gap-3.5 py-4">
+                  <Icon name="Check" class={`mt-0.5 size-5 shrink-0 ${i === 0 ? 'text-amarillo' : 'text-grafito'}`} />
+                  <span class:list={['text-base leading-[1.55] md:text-[1.0625rem]', i === 0 ? 'text-gris-100' : 'text-gris-700']}>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

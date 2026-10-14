@@ -5,6 +5,8 @@ import Footer from '../components/Footer.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 import Hero from '../components/sections/Hero.astro';
 import TrustBar from '../components/sections/TrustBar.astro';
+import Services from '../components/sections/Services.astro';
+import PaymentsLogistics from '../components/sections/PaymentsLogistics.astro';
 import Products from '../components/sections/Products.astro';
 import Solutions from '../components/sections/Solutions.astro';
 import Industries from '../components/sections/Industries.astro';
@@ -29,8 +31,10 @@ const jsonLd = buildJsonLd(Astro.site!, import.meta.env.BASE_URL);
   <main id="contenido" tabindex="-1" class="outline-none">
     <Hero />
     <TrustBar />
+    <Services />
     <Products />
     <Solutions />
+    <PaymentsLogistics />
     <Industries />
     <Why />
     <Process />

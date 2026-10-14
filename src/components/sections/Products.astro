@@ -7,7 +7,7 @@ import calzado from '../../assets/photos/arven-calzado-seguridad.png';
 import { products } from '../../content/copy';
 ---
 
-<section id="productos" class="section-y bg-blanco" aria-labelledby="productos-title">
+<section id="productos" class="section-y bg-gris-50" aria-labelledby="productos-title">
   <div class="container-x">
     <div class="grid items-end gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
       <SectionHeader id="productos-title" eyebrow={products.eyebrow} title={products.title} intro={products.intro} />
@@ -23,7 +23,7 @@ import { products } from '../../content/copy';
           alt="Bota de seguridad negra con casquillo sobre piso de planta con marcaje amarillo"
           sizes="(min-width: 64rem) 240px, 40vw"
           widths={[320, 480, 640]}
-          pictureClass="absolute bottom-0 left-4 w-[42%] max-w-[16rem] border-4 border-blanco sm:left-6"
+          pictureClass="absolute bottom-0 left-4 w-[42%] max-w-[16rem] border-4 border-gris-50 sm:left-6"
           class="aspect-[4/3] w-full object-cover"
           position="55% 70%"
         />
@@ -44,7 +44,7 @@ import { products } from '../../content/copy';
       }
     </ul>
 
-    <div class="bg-gris-50 mt-8 flex flex-col items-start gap-5 p-6 sm:flex-row sm:items-center sm:justify-between lg:px-8">
+    <div class="bg-blanco border-gris-100 mt-8 flex border flex-col items-start gap-5 p-6 sm:flex-row sm:items-center sm:justify-between lg:px-8">
       <p class="text-grafito font-medium">{products.note}</p>
       <a href="#contacto" class="btn btn-outline-dark shrink-0">
         {products.cta}

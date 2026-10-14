@@ -6,10 +6,10 @@ import uniformes from '../../assets/photos/arven-equipo-uniformes.png';
 import { solutions } from '../../content/copy';
 ---
 
-<section id="soluciones" class="section-y bg-gris-50" aria-labelledby="soluciones-title">
+<section id="cadena-de-suministro" class="section-y bg-blanco" aria-labelledby="cadena-title">
   <div class="container-x grid gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-20">
     <div class="lg:order-2">
-      <SectionHeader id="soluciones-title" eyebrow={solutions.eyebrow} title={solutions.title} intro={solutions.intro} />
+      <SectionHeader id="cadena-title" eyebrow={solutions.eyebrow} title={solutions.title} intro={solutions.intro} />
 
       <ul class="border-gris-300 mt-10 border-t">
         {
@@ -27,7 +27,7 @@ import { solutions } from '../../content/copy';
         }
       </ul>
 
-      <a href="#contacto" data-purchase="Programa de abastecimiento" class="btn btn-primary mt-10 w-full sm:w-auto">
+      <a href="#contacto" class="btn btn-primary mt-10 w-full sm:w-auto">
         {solutions.cta}
         <Icon name="ArrowRight" />
       </a>

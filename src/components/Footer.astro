@@ -8,23 +8,25 @@ interface Props {
 }
 const { home = '' } = Astro.props;
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
-const social = [
-  { label: 'LinkedIn', href: site.social.linkedin },
-  { label: 'Facebook', href: site.social.facebook },
-  { label: 'Instagram', href: site.social.instagram },
-];
 const h4 = 'font-display text-blanco text-sm font-semibold tracking-[0.08em] uppercase';
 const linkCls = 'text-gris-300 hover:text-amarillo inline-flex min-h-8 items-center transition-colors';
 ---
 
 <footer class="bg-negro text-gris-300">
-  <div class="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr_0.9fr] lg:gap-10 lg:py-20">
+  <div class="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.3fr_1.15fr_0.9fr_0.9fr_1.3fr] lg:gap-10 lg:py-20">
     <div class="max-w-xs">
       <a href={home || base} class="inline-block" aria-label="ARVEN Comercializadora, ir al inicio">
         <Logo variant="negativo" height={44} class="h-11 w-auto" loading="lazy" />
       </a>
       <p class="mt-6 text-[0.9375rem] leading-[1.6]">{footer.tagline}</p>
     </div>
+
+    <nav aria-labelledby="ft-servicios">
+      <h2 id="ft-servicios" class={h4}>Servicios</h2>
+      <ul class="mt-5 space-y-1.5 text-[0.9375rem]">
+        {footer.services.map((l) => <li><a href={`${home}${l.href}`} class={`${linkCls} leading-snug`}>{l.label}</a></li>)}
+      </ul>
+    </nav>
 
     <nav aria-labelledby="ft-productos">
       <h2 id="ft-productos" class={h4}>Productos</h2>
@@ -43,21 +45,10 @@ const linkCls = 'text-gris-300 hover:text-amarillo inline-flex min-h-8 items-cen
     <div>
       <h2 class={h4}>Contacto</h2>
       <ul class="mt-5 space-y-1.5 text-[0.9375rem]">
-        <li><a href={telHref} class={linkCls}>{site.contact.phoneDisplay}</a></li>
-        <li><a href={whatsappHref} class={linkCls} target="_blank" rel="noopener">{site.contact.whatsappDisplay}</a></li>
+        <li><a href={telHref} class={linkCls}><span class="text-blanco mr-1.5 font-medium">Tel.</span>{site.contact.phoneDisplay}</a></li>
+        <li><a href={whatsappHref} class={linkCls} target="_blank" rel="noopener"><span class="text-blanco mr-1.5 font-medium">WhatsApp</span>{site.contact.whatsappDisplay}</a></li>
         <li><a href={mailHref} class={`${linkCls} break-all`}>{site.contact.email}</a></li>
         <li class="pt-1 leading-[1.6]">{fullAddress}</li>
-      </ul>
-    </div>
-
-    <div>
-      <h2 class={h4}>Síguenos</h2>
-      <ul class="mt-5 space-y-1.5 text-[0.9375rem]">
-        {
-          social.map((s) => (
-            <li>{s.href ? <a href={s.href} class={linkCls} target="_blank" rel="noopener">{s.label}</a> : <span class="inline-flex min-h-8 items-center">{s.label}</span>}</li>
-          ))
-        }
       </ul>
     </div>
   </div>

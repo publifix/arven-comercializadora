@@ -1,6 +1,6 @@
 # ARVEN Comercializadora · Landing page
 
-Landing page de ARVEN Comercializadora (Querétaro): suministro industrial de EPP, calzado de seguridad, uniformes, herramienta y consumibles.
+Landing page de ARVEN Comercializadora (Querétaro): distribución de insumos industriales, soluciones de cadena de suministro, tercerización de pagos y logística.
 
 - **Vista previa:** https://publifix.github.io/arven-comercializadora/
 - **Stack:** Astro (salida estática) · Tailwind CSS 4 · JavaScript mínimo
@@ -21,7 +21,7 @@ Requiere Node 22.12 o superior.
 
 | Ruta | Contenido |
 |------|-----------|
-| `src/config/site.ts` | **Datos del cliente y placeholders** (teléfono, WhatsApp, correo, dirección, horario, cifras, redes, integraciones) |
+| `src/config/site.ts` | **Datos del cliente y placeholders** (teléfono, WhatsApp, correo, dirección, horario, SEO, integraciones) |
 | `src/content/copy.ts` | Textos literales del documento de textos |
 | `src/styles/global.css` | Tokens del manual de marca (colores, tipografías) y componentes base |
 | `src/layouts/BaseLayout.astro` | `<head>`: SEO, Open Graph, favicons, fuentes, JSON-LD, slot de GTM |
@@ -36,10 +36,11 @@ Los placeholders se localizan con `grep -n "\[" src/config/site.ts`.
 
 ## Variables de entorno
 
+El sitio es 100 % estático: no tiene formulario ni backend. El contacto es por WhatsApp, teléfono y correo.
+
 Se definen en GitHub: *Settings → Secrets and variables → Actions → Variables* (o en `.env` en local, ver `.env.example`).
 
 | Variable | Uso |
 |----------|-----|
-| `PUBLIC_FORM_ENDPOINT` | Endpoint de Formspree del formulario (`https://formspree.io/f/<id>`). Sin él, el formulario muestra el mensaje de error y remite a WhatsApp. |
 | `PUBLIC_GTM_ID` | ID de Google Tag Manager (`GTM-XXXXXXX`). Vacío = GTM desactivado. |
 | `SITE_URL` / `BASE_PATH` | Dominio final. Para `arven.com.mx`: `SITE_URL=https://arven.com.mx` y `BASE_PATH=/`. |

@@ -327,14 +327,6 @@
       "css": ".ds-btn { font-family: var(--font-display, Saira, Arial, sans-serif); display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 12px 24px; border-radius: 2px; font-size: 16px; font-weight: 600; letter-spacing: 0.04em; line-height: 1.2; text-transform: uppercase; text-decoration: none; cursor: pointer; border: 0; transition: background-color 180ms cubic-bezier(0.16,1,0.3,1), color 180ms cubic-bezier(0.16,1,0.3,1), transform 180ms cubic-bezier(0.16,1,0.3,1); } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 3px solid #ffc20e; outline-offset: 2px; box-shadow: 0 0 0 2px #1f1f1f; } .ds-dark { background: #1f1f1f; padding: 24px; } .ds-btn-outline-light { background: transparent; color: #fff; border: 2px solid #fff; } .ds-btn-outline-light:hover { background: #fff; color: #1f1f1f; }"
     },
     {
-      "name": "Campo de texto",
-      "kind": "input",
-      "refersTo": "input",
-      "description": "Campo del formulario de cotización con etiqueta Saira.",
-      "html": "<div class=\"ds-field\"><label class=\"ds-label\" for=\"ds-emp\">Empresa<span class=\"ds-req\"> *</span></label><input id=\"ds-emp\" class=\"ds-input\" placeholder=\"Razón social o nombre comercial\"></div>",
-      "css": ".ds-field { max-width: 360px; } .ds-label { font-family: var(--font-display, Saira, Arial, sans-serif); display: block; margin-bottom: 8px; font-size: 15px; font-weight: 600; color: #1f1f1f; } .ds-req { color: #c62828; } .ds-input { display: block; width: 100%; padding: 12px 16px; font: 16px Inter, Arial, sans-serif; color: #1f1f1f; background: #fff; border: 1px solid #bdbdbd; border-radius: 2px; outline: none; transition: border-color 180ms; } .ds-input::placeholder { color: #6b6b6b; } .ds-input:hover { border-color: #6b6b6b; } .ds-input:focus { border-color: #1f1f1f; } .ds-input:focus-visible { outline: 3px solid #ffc20e; outline-offset: 2px; box-shadow: 0 0 0 2px #1f1f1f; }"
-    },
-    {
       "name": "Loseta de opción",
       "kind": "chip",
       "refersTo": "choice-tile",

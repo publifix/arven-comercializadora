@@ -161,7 +161,7 @@ Paleta de señalética industrial: neutros cálidos de piso, grafito estructural
 ### Primary
 - **Amarillo ARVEN** (amarillo): botón primario, carriles, marcadores de paso, íconos sobre fondos oscuros, anillo de foco, selección de texto y el botón flotante de WhatsApp. Sobre grafito o negro también puede ser color de titular de cierre (banda CTA, frase final de "Por qué ARVEN").
 - **Amarillo Profundo** (amarillo-hover): solo estado hover del botón primario y del botón flotante.
-- **Amarillo Claro** (amarillo-claro): fondo de opción marcada en casillas del formulario y de avisos de borrador; nunca como fondo de sección.
+- **Amarillo Claro** (amarillo-claro): fondo de avisos de borrador; nunca como fondo de sección.
 
 ### Neutral
 - **Grafito** (grafito): color de texto por defecto, fondo de bandas estructurales ("Por qué ARVEN", barra de confianza, banda CTA, cabecera de páginas internas, ficha de contacto) y borde del botón de contorno oscuro.
@@ -174,7 +174,7 @@ Paleta de señalética industrial: neutros cálidos de piso, grafito estructural
 - **Gris Carbón** (gris-700): texto secundario sobre blanco y divisores sobre grafito.
 
 ### Funcionales
-- **Error** (error), **Éxito** (exito), **Info** (info): solo web, solo para validación y estados del formulario (asterisco de obligatorio, mensajes, borde de campo inválido). Nunca decorativos.
+- **Error** (error), **Éxito** (exito), **Info** (info): solo web, reservados para estados funcionales (hoy el sitio no tiene formularios). Nunca decorativos.
 
 ### Named Rules
 **The Carril Rule.** El amarillo ocupa alrededor del 10 % de cualquier pantalla (proporción del manual 60 % neutros / 30 % grafito / 10 % amarillo). Si una banda clara empieza a verse amarilla, sobra amarillo.
@@ -207,7 +207,7 @@ Paleta de señalética industrial: neutros cálidos de piso, grafito estructural
 
 Contenedor centrado de 1280 px como máximo con márgenes laterales de 16 / 24 / 32 px según ancho. Las secciones respiran con 64 px de relleno vertical en móvil, 96 px en tablet y 112 px en escritorio. Las bandas van a sangre completa y el contenido se alinea siempre al contenedor.
 
-La composición de escritorio es mayormente de dos columnas asimétricas (proporciones cercanas a 1 : 1.05, 0.8 : 1.2, 1.5 : 1) con el encabezado de sección a un lado y la evidencia (foto, lista, formulario) al otro; en móvil todo se apila en una columna. Las colecciones usan retículas de celdas de 2 y 4 columnas. Los encabezados de sección se limitan a unos 46 rem de ancho. Breakpoints de Tailwind más uno propio a 480 px (xs) para la barra de confianza. Navbar fija de 72 px con `scroll-padding-top` que la compensa.
+La composición de escritorio es mayormente de dos columnas asimétricas (proporciones cercanas a 1 : 1.05, 0.8 : 1.2, 1.5 : 1) con el encabezado de sección a un lado y la evidencia (foto, lista, tarjetas de contacto) al otro; en móvil todo se apila en una columna. Las colecciones usan retículas de celdas de 2 y 4 columnas. Los encabezados de sección se limitan a unos 46 rem de ancho. Breakpoints de Tailwind más uno propio a 480 px (xs) para la barra de confianza. Navbar fija de 72 px con `scroll-padding-top` que la compensa.
 
 ## Elevation & Depth
 

@@ -1,4 +1,4 @@
-import { site } from '../config/site';
+import { site, directionsHref as mapUrl } from '../config/site';
 import { faq } from '../content/copy';
 
 /** Datos estructurados JSON-LD: Organization, LocalBusiness, WebSite y FAQPage. */
@@ -7,14 +7,13 @@ export function buildJsonLd(siteUrl: URL, baseUrl: string) {
   const home = new URL(base, siteUrl).href;
   const abs = (p: string) => new URL(`${base}${p}`, siteUrl).href;
   const orgId = `${home}#organization`;
-  const sameAs = Object.values(site.social).filter(Boolean);
 
   const contactPoint = [
     {
       '@type': 'ContactPoint',
       contactType: 'sales',
       telephone: site.contact.phoneE164,
-      email: site.contact.emailHref,
+      email: site.contact.email,
       areaServed: 'MX',
       availableLanguage: ['es'],
     },
@@ -37,15 +36,14 @@ export function buildJsonLd(siteUrl: URL, baseUrl: string) {
     logo: abs('android-chrome-512x512.png'),
     image: abs('og-image.jpg'),
     description: site.seo.description,
-    email: site.contact.emailHref,
+    email: site.contact.email,
     telephone: site.contact.phoneE164,
     contactPoint,
-    ...(sameAs.length ? { sameAs } : {}),
   };
 
   const localBusiness = {
     '@context': 'https://schema.org',
-    '@type': ['LocalBusiness', 'Store'],
+    '@type': 'LocalBusiness',
     '@id': `${home}#localbusiness`,
     name: site.name,
     parentOrganization: { '@id': orgId },
@@ -54,7 +52,7 @@ export function buildJsonLd(siteUrl: URL, baseUrl: string) {
     logo: abs('android-chrome-512x512.png'),
     description: site.seo.description,
     telephone: site.contact.phoneE164,
-    email: site.contact.emailHref,
+    email: site.contact.email,
     priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
@@ -64,9 +62,9 @@ export function buildJsonLd(siteUrl: URL, baseUrl: string) {
       postalCode: site.address.postalCode,
       addressCountry: site.address.country,
     },
-    geo: { '@type': 'GeoCoordinates', latitude: site.address.lat, longitude: site.address.lng },
+    hasMap: mapUrl,
     areaServed: [
-      { '@type': 'City', name: 'Querétaro' },
+      { '@type': 'City', name: 'Santiago de Querétaro' },
       { '@type': 'AdministrativeArea', name: 'Bajío' },
     ],
     openingHoursSpecification: site.hours.schema.map((h) => ({
@@ -76,7 +74,6 @@ export function buildJsonLd(siteUrl: URL, baseUrl: string) {
       closes: h.closes,
     })),
     contactPoint,
-    ...(sameAs.length ? { sameAs } : {}),
   };
 
   const website = {

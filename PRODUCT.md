@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Astro (salida estática) + Tailwind CSS + JavaScript mínimo, definido por el cliente. Despliegue en GitHub Pages vía GitHub Actions (`.github/workflows/deploy.yml`) en cada push a `main` o `claude/**`. Dominio provisional: https://publifix.github.io/arven-comercializadora/ (dominio final por confirmar). Formulario de cotización vía Formspree, endpoint configurable con `PUBLIC_FORM_ENDPOINT`.
+Astro (salida estática) + Tailwind CSS + JavaScript mínimo, definido por el cliente. Despliegue en GitHub Pages vía GitHub Actions (`.github/workflows/deploy.yml`) en cada push a `main` o `claude/**`. Dominio provisional: https://publifix.github.io/arven-comercializadora/ (dominio final por confirmar). Sitio sin backend: el contacto es por WhatsApp, teléfono y correo (sin formulario).
 
 ## Users
 
@@ -16,7 +16,7 @@ Responsables de Compras, Seguridad e Higiene y Mantenimiento de plantas industri
 
 ## Product Purpose
 
-ARVEN Comercializadora abastece a la industria y a corporativos de Querétaro con insumos industriales. La landing existe para convertir visitas en solicitudes de cotización (formulario, WhatsApp, teléfono). Éxito: solicitudes de cotización calificadas de empresas.
+ARVEN Comercializadora tiene cuatro líneas de negocio para la industria y los corporativos de Querétaro: distribución de insumos industriales, soluciones de cadena de suministro, tercerización de pagos y logística. La landing existe para convertir visitas en solicitudes de cotización por WhatsApp, teléfono o correo. Éxito: solicitudes de cotización calificadas de empresas.
 
 ## Positioning
 
@@ -29,8 +29,8 @@ Compras B2B con requisiciones, listas de productos, perfiles de puesto, alta com
 ## Capabilities and Constraints
 
 - Copy final y literal en `docs/ARVEN Comercializadora — Textos de la landing page.docx`; no se inventa, resume ni reescribe.
-- Datos entre corchetes son placeholders pendientes del cliente (cifras, contacto, dirección, horario, pedido mínimo, redes, dominio, aviso de privacidad). Centralizados en `src/config/site.ts`.
-- Soluciones ofrecidas hoy por confirmar con el cliente.
+- Datos entre corchetes son placeholders pendientes del cliente (razón social, dominio, validación legal del aviso de privacidad). Centralizados en `src/config/site.ts`.
+- Cuatro líneas de negocio confirmadas por el cliente (oct. 2026). Contacto definitivo: WhatsApp y teléfono 442 186 6158, contacto@arvenexico.com, Calle San Luis Potosí 14, Col. Hidalgo, Santiago de Querétaro, C.P. 76057. Sin redes sociales.
 
 ## Brand Commitments
 
@@ -44,7 +44,7 @@ Compras B2B con requisiciones, listas de productos, perfiles de puesto, alta com
 ## Evidence on Hand
 
 - Fotografías 16:9 (1280×720): `src/assets/photos/` (planta, anaqueles EPP, calzado, equipo con uniformes, logística en andén). No hay foto de "Asesoría en planta" ni fotos por sector industrial.
-- No hay testimonios, logos de clientes, certificaciones ni cifras confirmadas: no se fabrican.
+- No hay testimonios, logos de clientes, certificaciones, años de operación ni cantidad de productos: no se fabrican ni se mencionan.
 
 ## Product Principles
 

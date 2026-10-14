@@ -26,7 +26,7 @@ const link = (hash: string) => `${home}${hash}`;
     </a>
     <span class="inline-flex items-center gap-2">
       <Icon name="Clock" class="text-amarillo size-4" />
-      <span>Lunes a viernes de {site.hours.weekdays} h, sábados de {site.hours.saturday} h</span>
+      <span>{site.hours.display}</span>
     </span>
   </div>
 </div>
