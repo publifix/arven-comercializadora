@@ -250,7 +250,7 @@ Directos y de un solo golpe, como un letrero de acción.
 - **Adjuntar archivo:** zona de borde punteado con botón interno grafito en Saira mayúsculas.
 
 ### Navigation
-- **Style:** barra de utilidad negra de 40 px (solo escritorio) con teléfono, WhatsApp y horario en gris medio con íconos amarillos; navbar negra fija de 72 px con logo negativo, enlaces Saira SemiBold de 15 px en blanco y botón primario compacto.
+- **Style:** barra de utilidad negra de 40 px (solo escritorio) con teléfono, WhatsApp y horario en gris medio con íconos amarillos; navbar negra fija de 72 px con logo ARVEN COMERCIAL (A amarilla + blanco), enlaces Saira SemiBold de 15 px en blanco y botón primario compacto.
 - **States:** enlaces y controles pasan a amarillo en hover.
 - **Mobile:** menú en `<dialog>` negro a pantalla completa, enlaces Saira Bold de 28 px en mayúsculas con flecha amarilla y divisores gris carbón; botón primario y de contorno claro a todo el ancho al pie.
 

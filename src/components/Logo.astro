@@ -1,26 +1,33 @@
 ---
 /**
- * Logotipo ARVEN. V05-B (negativo) para fondos negros/grafito, V05-A (positivo) para fondos claros.
+ * Logotipo ARVEN COMERCIAL.
+ * - negativo: A amarilla + ARVEN COMERCIAL blanco, para fondos negros/grafito (navbar, footer).
+ * - positivo: A amarilla + ARVEN COMERCIAL grafito, para fondos claros.
+ * - blanco / negro: versiones monocromáticas.
  * Altura de 40 px => ~163 px de ancho (mínimo del manual: 160 px).
  */
 import { Image } from 'astro:assets';
-import negativo from '../assets/brand/ARVEN_V05-B_negativo_navbar@2x.png';
-import positivo from '../assets/brand/ARVEN_V05-A_positivo_navbar@2x.png';
+import negativo from '../assets/brand/arven-comercial/ARVEN-Comercial_a-amarilla_blanco_navbar@2x.png';
+import positivo from '../assets/brand/arven-comercial/ARVEN-Comercial_a-amarilla_grafito_navbar@2x.png';
+import blanco from '../assets/brand/arven-comercial/ARVEN-Comercial_blanco_navbar@2x.png';
+import negro from '../assets/brand/arven-comercial/ARVEN-Comercial_negro_navbar@2x.png';
+
+const variants = { negativo, positivo, blanco, negro };
 
 interface Props {
-  variant?: 'negativo' | 'positivo';
+  variant?: keyof typeof variants;
   height?: number;
   class?: string;
   loading?: 'eager' | 'lazy';
 }
 const { variant = 'negativo', height = 40, class: className = '', loading = 'eager' } = Astro.props;
-const src = variant === 'negativo' ? negativo : positivo;
+const src = variants[variant];
 const width = Math.round((src.width / src.height) * height);
 ---
 
 <Image
   src={src}
-  alt="ARVEN Comercializadora"
+  alt="ARVEN Comercial"
   width={width}
   height={height}
   densities={[1, 2]}

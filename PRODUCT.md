@@ -35,7 +35,7 @@ Compras B2B con requisiciones, listas de productos, perfiles de puesto, alta com
 ## Brand Commitments
 
 - Manual de identidad visual v1.0 (`docs/Manual_de_identidad_visual_ARVEN.pdf`) manda en logos, colores y tipografías.
-- Logos: V05-A positivo (fondos claros), V05-B negativo (fondos oscuros; navbar y footer negros), mono e isotipo. Logotipo completo mínimo 160 px de ancho; debajo de eso, isotipo.
+- Logos (oct. 2026): ARVEN COMERCIAL en `src/assets/brand/arven-comercial/`: A amarilla + blanco (fondos oscuros; navbar, menú y footer), A amarilla + grafito (fondos claros), monocromáticos blanco y negro; isotipo A en favicons. Logotipo completo mínimo 160 px de ancho; debajo de eso, isotipo.
 - Paleta: Amarillo ARVEN #FFC20E (hover #E0A800, claro #FFF4CC), Grafito #1F1F1F, Negro #000000, Blanco, grises #3D3D3D #6B6B6B #BDBDBD #EDEDEB #F7F7F5. Proporción 60 % blanco/neutros, 30 % grafito, 10 % amarillo. Amarillo nunca como texto sobre blanco; texto sobre amarillo siempre grafito.
 - Tipografía: Saira (titulares, botones, etiquetas, cifras) e Inter (texto).
 - Personalidad: Confiable, Directa, Industrial, Ágil. Tono: directo, seguro y técnico sin ser frío; tutea en titulares y botones.
