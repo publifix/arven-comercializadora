@@ -27,7 +27,7 @@ export const site = {
     /** Solo dígitos con lada de país, para wa.me */
     whatsappNumber: '524421866158',
     whatsappMessage: 'Hola, me interesa cotizar insumos para mi empresa.',
-    email: 'contacto@arvenexico.com',
+    email: 'contacto@arvenmexico.com',
     emailSubject: 'Solicitud de cotización',
   },
 
