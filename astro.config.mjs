@@ -8,9 +8,9 @@ import tailwindcss from '@tailwindcss/vite';
 const site = process.env.SITE_URL || 'https://arvenmexico.com';
 const base = process.env.BASE_PATH || '/';
 
-// Aviso de privacidad en borrador: fuera del sitemap. Al validarlo, poner true aquí
+// Aviso de privacidad indexable. Si vuelve a ser borrador, poner false aquí
 // y en src/config/site.ts (legal.privacyIndexable).
-const PRIVACY_INDEXABLE = false;
+const PRIVACY_INDEXABLE = true;
 
 export default defineConfig({
   site,

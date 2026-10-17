@@ -21,7 +21,7 @@ Requiere Node 22.12 o superior.
 
 | Ruta | Contenido |
 |------|-----------|
-| `src/config/site.ts` | **Datos del cliente y placeholders** (teléfono, WhatsApp, correo, dirección, horario, SEO, integraciones) |
+| `src/config/site.ts` | **Datos del cliente** (titular, teléfono, WhatsApp, correo, dirección, horario, SEO, integraciones) |
 | `src/content/copy.ts` | Textos literales del documento de textos |
 | `src/styles/global.css` | Tokens del manual de marca (colores, tipografías) y componentes base |
 | `src/layouts/BaseLayout.astro` | `<head>`: SEO, Open Graph, favicons, fuentes, JSON-LD, slot de GTM |
@@ -32,7 +32,7 @@ Requiere Node 22.12 o superior.
 | `public/` | Favicons, fuentes autoalojadas, imagen social `og-image.jpg` |
 | `docs/` | Documento de textos y manual de identidad visual |
 
-Los placeholders se localizan con `grep -n "\[" src/config/site.ts`.
+Google Search Console está verificado con `public/googledcccd2c664a9ab65.html` (no borrar). Sitemap: `https://arvenmexico.com/sitemap-index.xml`.
 
 ## Variables de entorno
 

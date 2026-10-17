@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site, fullAddress } from '../config/site';
+import { site, fullAddress, telHref } from '../config/site';
 
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const privacyMail = `mailto:${site.contact.email}?subject=${encodeURIComponent('Aviso de privacidad')}`;
@@ -23,16 +23,12 @@ const ul = 'text-gris-700 mt-4 list-disc space-y-2 pl-6 leading-[1.7] marker:tex
       <div class="container-x py-14 md:py-20">
         <h1 class="font-display text-[2.25rem] leading-[1.08] font-bold uppercase md:text-[3.5rem]">Aviso de privacidad</h1>
         <span class="lane mt-6" aria-hidden="true"></span>
-        <p class="text-gris-300 mt-6">Última actualización: [fecha de publicación]</p>
+        <p class="text-gris-300 mt-6">Última actualización: 17 de octubre de 2026</p>
       </div>
     </div>
 
     <article class="container-x max-w-[48rem] py-14 md:py-20">
-      <div class="border-amarillo bg-amarillo-claro text-grafito border px-5 py-4 text-[0.9375rem]">
-        <strong class="font-semibold">[Borrador pendiente de validar con el área legal del cliente.]</strong> Los datos entre corchetes deben completarse antes de publicar.
-      </div>
-
-      <h2 class={h2}>Identidad y domicilio del responsable</h2>
+      <h2 class="font-display text-grafito text-2xl leading-tight font-bold md:text-[1.75rem]">Identidad y domicilio del responsable</h2>
       <p class={p}>
         {site.legalName}, persona física con actividad empresarial que opera con el nombre comercial {site.name}, con domicilio en {fullAddress}, es responsable del tratamiento de tus datos
         personales conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares y demás normatividad aplicable.
@@ -69,19 +65,28 @@ const ul = 'text-gris-700 mt-4 list-disc space-y-2 pl-6 leading-[1.7] marker:tex
 
       <h2 class={h2}>Transferencias de datos</h2>
       <p class={p}>
-        {site.name} no transfiere tus datos personales a terceros sin tu consentimiento, salvo en los casos previstos por la ley. Podemos compartirlos con
-        proveedores que nos prestan servicios (por ejemplo, paquetería o servicios de mensajería y correo electrónico), quienes están obligados a tratarlos con la misma
-        confidencialidad. [Validar proveedores con el cliente.]
+        Para entregar tus pedidos compartimos con empresas de paquetería y mensajería únicamente los datos necesarios para el envío: nombre de quien
+        recibe, empresa, domicilio de entrega y teléfono de contacto. Estas empresas los usan solo para realizar la entrega. Esta transferencia es
+        necesaria para cumplir la relación comercial contigo, por lo que no requiere tu consentimiento. Fuera de este caso y de los previstos por la ley,
+        {site.name} no transfiere tus datos personales a terceros.
       </p>
 
       <h2 class={h2}>Derechos ARCO y revocación del consentimiento</h2>
       <p class={p}>
         Tienes derecho a conocer qué datos tenemos de ti (Acceso), a solicitar su corrección (Rectificación), a pedir que los eliminemos (Cancelación) y a
-        oponerte a su uso para fines específicos (Oposición), así como a revocar tu consentimiento. Para ejercerlos, envía una solicitud a
-        <a href={privacyMail} class="text-grafito font-semibold underline hover:no-underline">{site.contact.email}</a> con tu nombre, un medio para
-        responderte, una identificación oficial y la descripción clara de lo que solicitas. Daremos respuesta en los plazos que establece la ley. [Validar
-        procedimiento y responsable de datos personales.]
+        oponerte a su uso para fines específicos (Oposición), así como a revocar tu consentimiento.
       </p>
+      <p class={p}>
+        Las solicitudes las atiende directamente {site.legalName}, responsable del tratamiento. Puedes presentarlas por correo electrónico a
+        <a href={privacyMail} class="text-grafito font-semibold underline hover:no-underline">{site.contact.email}</a> o por teléfono al
+        <a href={telHref} class="text-grafito font-semibold underline hover:no-underline">{site.contact.phoneDisplay}</a>. Tu solicitud debe incluir:
+      </p>
+      <ul class={ul}>
+        <li>Tu nombre completo y un medio para comunicarte la respuesta.</li>
+        <li>Una identificación oficial que acredite tu identidad o, en su caso, la de tu representante.</li>
+        <li>La descripción clara de los datos y del derecho que deseas ejercer.</li>
+      </ul>
+      <p class={p}>Te responderemos por el mismo medio dentro de los plazos que establece la ley.</p>
 
       <h2 class={h2}>Uso de cookies y tecnologías similares</h2>
       <p class={p}>

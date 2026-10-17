@@ -1,8 +1,7 @@
 /**
  * Configuración central del sitio ARVEN Comercial.
  *
- * Los datos entre corchetes [ ] son PLACEHOLDERS que debe confirmar el
- * cliente antes de publicar. Búscalos con: grep -n "\[" src/config/site.ts
+ * Todos los datos de contacto, SEO y datos legales del sitio viven aquí.
  */
 
 export const site = {
@@ -54,11 +53,11 @@ export const site = {
   legal: {
     year: 2026,
     /**
-     * El aviso de privacidad sigue en borrador (texto entre corchetes). Mientras sea false,
-     * la página lleva noindex y queda fuera del sitemap. Cambiar a true al validarlo.
+     * Si el aviso de privacidad vuelve a estar en borrador, poner false: la página
+     * llevará noindex y quedará fuera del sitemap (también en astro.config.mjs).
      */
-    privacyIndexable: false,
-    /** URL de Términos y condiciones; vacío = se muestra el texto sin enlace */
+    privacyIndexable: true,
+    /** URL de Términos y condiciones; vacío = no se muestra el enlace en el footer */
     termsUrl: '',
   },
 
