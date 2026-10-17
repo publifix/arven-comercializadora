@@ -3,7 +3,7 @@ import type { APIRoute } from 'astro';
 export const GET: APIRoute = () => {
   const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
   const manifest = {
-    name: 'ARVEN Comercializadora',
+    name: 'ARVEN Comercial',
     short_name: 'ARVEN',
     description: 'Suministro industrial para plantas y corporativos en Querétaro y el Bajío.',
     lang: 'es-MX',

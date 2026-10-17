@@ -1,5 +1,5 @@
 ---
-name: ARVEN Comercializadora
+name: ARVEN Comercial
 description: Abastecimiento industrial para plantas y corporativos de Querétaro; señalética de piso de planta llevada a la web.
 colors:
   amarillo: "#ffc20e"
@@ -134,7 +134,7 @@ components:
     width: "72px"
 ---
 
-# Design System: ARVEN Comercializadora
+# Design System: ARVEN Comercial
 
 ## Overview
 

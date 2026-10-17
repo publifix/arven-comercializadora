@@ -240,7 +240,7 @@ export const process = {
 export const about = {
   eyebrow: 'NOSOTROS',
   title: 'El aliado de abastecimiento de la industria queretana',
-  text: 'ARVEN Comercializadora es una empresa de Querétaro dedicada a la distribución de insumos industriales, las soluciones de cadena de suministro, la tercerización de pagos y la logística para la industria y los corporativos. Combinamos un catálogo integral con procesos modernos de compra, pago y entrega para que nuestros clientes tengan lo que necesitan, cuando lo necesitan. Nuestro compromiso es simple: que la operación de tu planta nunca se detenga.',
+  text: 'ARVEN Comercial es una empresa de Querétaro dedicada a la distribución de insumos industriales, las soluciones de cadena de suministro, la tercerización de pagos y la logística para la industria y los corporativos. Combinamos un catálogo integral con procesos modernos de compra, pago y entrega para que nuestros clientes tengan lo que necesitan, cuando lo necesitan. Nuestro compromiso es simple: que la operación de tu planta nunca se detenga.',
   mission:
     'Simplificar el abastecimiento de la industria y los corporativos con insumos confiables, una cadena de suministro eficiente, pagos ordenados y entregas puntuales, para que cada cliente opere de forma segura y continua.',
   vision:

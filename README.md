@@ -1,6 +1,6 @@
-# ARVEN Comercializadora · Landing page
+# ARVEN Comercial · Landing page
 
-Landing page de ARVEN Comercializadora (Querétaro): distribución de insumos industriales, soluciones de cadena de suministro, tercerización de pagos y logística.
+Landing page de ARVEN Comercial (Querétaro): distribución de insumos industriales, soluciones de cadena de suministro, tercerización de pagos y logística.
 
 - **Sitio:** https://arvenmexico.com (GitHub Pages con dominio propio; DNS en GoDaddy)
 - **Stack:** Astro (salida estática) · Tailwind CSS 4 · JavaScript mínimo

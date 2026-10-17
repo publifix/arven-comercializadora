@@ -16,7 +16,7 @@ Responsables de Compras, Seguridad e Higiene y Mantenimiento de plantas industri
 
 ## Product Purpose
 
-ARVEN Comercializadora tiene cuatro líneas de negocio para la industria y los corporativos de Querétaro: distribución de insumos industriales, soluciones de cadena de suministro, tercerización de pagos y logística. La landing existe para convertir visitas en solicitudes de cotización por WhatsApp, teléfono o correo. Éxito: solicitudes de cotización calificadas de empresas.
+ARVEN Comercial (antes ARVEN Comercializadora; cambio de nombre oct. 2026) tiene cuatro líneas de negocio para la industria y los corporativos de Querétaro: distribución de insumos industriales, soluciones de cadena de suministro, tercerización de pagos y logística. La landing existe para convertir visitas en solicitudes de cotización por WhatsApp, teléfono o correo. Éxito: solicitudes de cotización calificadas de empresas.
 
 ## Positioning
 

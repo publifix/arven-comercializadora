@@ -1,13 +1,13 @@
 /**
- * Configuración central del sitio ARVEN Comercializadora.
+ * Configuración central del sitio ARVEN Comercial.
  *
  * Los datos entre corchetes [ ] son PLACEHOLDERS que debe confirmar el
  * cliente antes de publicar. Búscalos con: grep -n "\[" src/config/site.ts
  */
 
 export const site = {
-  name: 'ARVEN Comercializadora',
-  legalName: '[Razón social de ARVEN Comercializadora]',
+  name: 'ARVEN Comercial',
+  legalName: '[Razón social de ARVEN Comercial]',
   /** Dominio final. La URL efectiva se toma de astro.config (SITE_URL + BASE_PATH). */
   domain: 'arvenmexico.com',
   locale: 'es_MX',
