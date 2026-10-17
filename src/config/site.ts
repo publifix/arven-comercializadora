@@ -9,7 +9,7 @@ export const site = {
   name: 'ARVEN Comercializadora',
   legalName: '[Razón social de ARVEN Comercializadora]',
   /** Dominio final. La URL efectiva se toma de astro.config (SITE_URL + BASE_PATH). */
-  domain: '[dominio final]',
+  domain: 'arvenmexico.com',
   locale: 'es_MX',
 
   seo: {

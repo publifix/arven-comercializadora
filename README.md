@@ -2,7 +2,7 @@
 
 Landing page de ARVEN Comercializadora (Querétaro): distribución de insumos industriales, soluciones de cadena de suministro, tercerización de pagos y logística.
 
-- **Vista previa:** https://publifix.github.io/arven-comercializadora/
+- **Sitio:** https://arvenmexico.com (GitHub Pages con dominio propio; DNS en GoDaddy)
 - **Stack:** Astro (salida estática) · Tailwind CSS 4 · JavaScript mínimo
 - **Despliegue:** GitHub Actions → GitHub Pages en cada push a `main` o `claude/**` (`.github/workflows/deploy.yml`)
 
@@ -10,7 +10,7 @@ Landing page de ARVEN Comercializadora (Querétaro): distribución de insumos in
 
 ```bash
 npm ci
-npm run dev       # http://localhost:4321/arven-comercializadora/
+npm run dev       # http://localhost:4321/
 npm run build     # genera dist/
 npm run preview
 ```
@@ -43,4 +43,4 @@ Se definen en GitHub: *Settings → Secrets and variables → Actions → Variab
 | Variable | Uso |
 |----------|-----|
 | `PUBLIC_GTM_ID` | ID de Google Tag Manager (`GTM-XXXXXXX`). Vacío = GTM desactivado. |
-| `SITE_URL` / `BASE_PATH` | Dominio final. Para `arven.com.mx`: `SITE_URL=https://arven.com.mx` y `BASE_PATH=/`. |
+| `SITE_URL` / `BASE_PATH` | Opcionales. Por defecto `https://arvenmexico.com` y `/`. |

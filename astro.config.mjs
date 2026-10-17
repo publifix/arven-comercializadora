@@ -3,10 +3,10 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-// Dominio y ruta base: por defecto la vista previa en GitHub Pages.
-// Para el dominio final: SITE_URL=https://arven.com.mx BASE_PATH=/ npm run build
-const site = process.env.SITE_URL || 'https://publifix.github.io';
-const base = process.env.BASE_PATH || '/arven-comercializadora';
+// Dominio de producción. Se puede sobrescribir con SITE_URL y BASE_PATH
+// (p. ej. para una vista previa en https://publifix.github.io con BASE_PATH=/arven-comercializadora).
+const site = process.env.SITE_URL || 'https://arvenmexico.com';
+const base = process.env.BASE_PATH || '/';
 
 export default defineConfig({
   site,
