@@ -7,7 +7,8 @@
 
 export const site = {
   name: 'ARVEN Comercial',
-  legalName: '[Razón social de ARVEN Comercial]',
+  /** Titular: persona física con actividad empresarial */
+  legalName: 'Roberto Rivera Chapa',
   /** Dominio final. La URL efectiva se toma de astro.config (SITE_URL + BASE_PATH). */
   domain: 'arvenmexico.com',
   locale: 'es_MX',
