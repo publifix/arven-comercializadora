@@ -41,8 +41,8 @@ const media: { src: ImageMetadata; pos: string; alt: string; wide?: boolean }[] 
               <Photo
                 src={m.src}
                 alt={m.alt}
-                sizes={m.wide ? '(min-width: 64rem) 50vw, 100vw' : '(min-width: 64rem) 25vw, (min-width: 40rem) 50vw, 100vw'}
-                widths={[480, 640, 800, 1024]}
+                sizes={m.wide ? '(min-width: 64rem) 50vw, 100vw' : '(min-width: 64rem) 40vw, (min-width: 40rem) 75vw, 130vw'}
+                widths={[480, 640, 800, 1024, 1280]}
                 pictureClass="absolute inset-0 -z-20"
                 class="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
                 position={m.pos}
