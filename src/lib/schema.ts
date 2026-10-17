@@ -8,6 +8,15 @@ export function buildJsonLd(siteUrl: URL, baseUrl: string) {
   const abs = (p: string) => new URL(`${base}${p}`, siteUrl).href;
   const orgId = `${home}#organization`;
 
+  const postalAddress = {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    addressLocality: site.address.city,
+    addressRegion: site.address.regionCode,
+    postalCode: site.address.postalCode,
+    addressCountry: site.address.country,
+  };
+
   const contactPoint = [
     {
       '@type': 'ContactPoint',
@@ -33,11 +42,12 @@ export function buildJsonLd(siteUrl: URL, baseUrl: string) {
     name: site.name,
     legalName: site.legalName,
     url: home,
-    logo: abs('android-chrome-512x512.png'),
+    logo: { '@type': 'ImageObject', url: abs('logo-arven-comercial.png'), width: 1200, height: 295 },
     image: abs('og-image.jpg'),
     description: site.seo.description,
     email: site.contact.email,
     telephone: site.contact.phoneE164,
+    address: postalAddress,
     contactPoint,
   };
 
@@ -49,19 +59,12 @@ export function buildJsonLd(siteUrl: URL, baseUrl: string) {
     parentOrganization: { '@id': orgId },
     url: home,
     image: abs('og-image.jpg'),
-    logo: abs('android-chrome-512x512.png'),
+    logo: abs('logo-arven-comercial.png'),
     description: site.seo.description,
     telephone: site.contact.phoneE164,
     email: site.contact.email,
     priceRange: '$$',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: site.address.street,
-      addressLocality: site.address.city,
-      addressRegion: site.address.regionCode,
-      postalCode: site.address.postalCode,
-      addressCountry: site.address.country,
-    },
+    address: postalAddress,
     hasMap: mapUrl,
     areaServed: [
       { '@type': 'City', name: 'Santiago de Querétaro' },

@@ -8,6 +8,10 @@ import tailwindcss from '@tailwindcss/vite';
 const site = process.env.SITE_URL || 'https://arvenmexico.com';
 const base = process.env.BASE_PATH || '/';
 
+// Aviso de privacidad en borrador: fuera del sitemap. Al validarlo, poner true aquí
+// y en src/config/site.ts (legal.privacyIndexable).
+const PRIVACY_INDEXABLE = false;
+
 export default defineConfig({
   site,
   base,
@@ -19,7 +23,9 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/404'),
+      // Solo páginas indexables.
+      filter: (page) => !page.includes('/404') && (PRIVACY_INDEXABLE || !page.includes('/aviso-de-privacidad')),
+      serialize: (item) => ({ ...item, lastmod: new Date().toISOString(), changefreq: 'monthly', priority: 1 }),
     }),
   ],
   vite: {

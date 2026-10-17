@@ -52,6 +52,11 @@ export const site = {
 
   legal: {
     year: 2026,
+    /**
+     * El aviso de privacidad sigue en borrador (texto entre corchetes). Mientras sea false,
+     * la página lleva noindex y queda fuera del sitemap. Cambiar a true al validarlo.
+     */
+    privacyIndexable: false,
     /** URL de Términos y condiciones; vacío = se muestra el texto sin enlace */
     termsUrl: '',
   },
