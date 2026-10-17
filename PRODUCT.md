@@ -30,7 +30,7 @@ Compras B2B con requisiciones, listas de productos, perfiles de puesto, alta com
 
 - Copy final y literal en `docs/ARVEN Comercializadora — Textos de la landing page.docx`; no se inventa, resume ni reescribe.
 - Titular: Roberto Rivera Chapa, persona física con actividad empresarial (nombre comercial ARVEN Comercial). Sin placeholders pendientes; datos centralizados en `src/config/site.ts`.
-- Cuatro líneas de negocio confirmadas por el cliente (oct. 2026). Contacto definitivo: WhatsApp y teléfono 442 186 6158, contacto@arvenmexico.com, Calle San Luis Potosí 14, Col. Hidalgo, Santiago de Querétaro, C.P. 76057. Sin redes sociales.
+- Cuatro líneas de negocio confirmadas por el cliente (oct. 2026). Contacto definitivo: teléfono 442 186 6158, WhatsApp 442 186 6156, contacto@arvenmexico.com, Calle San Luis Potosí 14, Col. Hidalgo, Santiago de Querétaro, C.P. 76057. Sin redes sociales.
 
 ## Brand Commitments
 

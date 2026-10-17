@@ -19,13 +19,13 @@ export const site = {
   },
 
   contact: {
-    /** Texto visible del teléfono y WhatsApp */
+    /** Texto visible del teléfono */
     phoneDisplay: '442 186 6158',
     /** Formato E.164 para enlaces tel: y datos estructurados */
     phoneE164: '+524421866158',
-    whatsappDisplay: '442 186 6158',
+    whatsappDisplay: '442 186 6156',
     /** Solo dígitos con lada de país, para wa.me */
-    whatsappNumber: '524421866158',
+    whatsappNumber: '524421866156',
     whatsappMessage: 'Hola, me interesa cotizar insumos para mi empresa.',
     email: 'contacto@arvenmexico.com',
     emailSubject: 'Solicitud de cotización',
